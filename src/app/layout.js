@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
+import { HeaderThemeProvider } from "@/context/HeaderThemeContext";
 import CartDrawer from "@/components/CartDrawer";
 
 // Canicule Display alternative - Elegant serif with high contrast for Mediterranean luxury
@@ -66,12 +67,14 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={`${cormorantGaramond.variable} ${workSans.variable}`} suppressHydrationWarning>
         <JsonLd data={orgSchema} />
-        <CartProvider>
-          <Header />
-          <CartDrawer />
-          {children}
-          <Footer />
-        </CartProvider>
+        <HeaderThemeProvider>
+          <CartProvider>
+            <Header />
+            <CartDrawer />
+            {children}
+            <Footer />
+          </CartProvider>
+        </HeaderThemeProvider>
       </body>
     </html>
   );

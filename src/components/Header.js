@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import styles from './Header.module.css';
+import { useHeaderTheme } from '@/context/HeaderThemeContext';
 
 export default function Header() {
     const { toggleDrawer, cart } = useCart();
     const [scrolled, setScrolled] = useState(false);
+    const { theme } = useHeaderTheme();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,7 +20,8 @@ export default function Header() {
 
     const headerClasses = [
         styles.header,
-        scrolled ? styles.scrolled : styles.alwaysGlass
+        scrolled ? styles.scrolled : styles.alwaysGlass,
+        theme === 'light' && !scrolled ? styles.lightTheme : ''
     ].join(' ').trim();
 
     return (

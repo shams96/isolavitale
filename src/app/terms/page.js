@@ -1,5 +1,5 @@
-import { client } from "@/sanity/client";
 import { PortableText } from "next-sanity";
+import ThemeSetter from "@/components/ThemeSetter";
 
 export const revalidate = 60; // Revalidate every minute
 
@@ -19,6 +19,7 @@ export default async function TermsPage() {
 
     return (
         <main style={{ backgroundColor: 'var(--color-ivory)', color: 'var(--color-obsidian)', minHeight: '100vh', paddingTop: '120px', paddingBottom: '80px' }}>
+            <ThemeSetter theme="light" />
             <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 20px' }}>
                 <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '3rem', marginBottom: '1rem', textAlign: 'center' }}>
                     {data?.title || "Terms of Service"}

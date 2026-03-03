@@ -108,6 +108,17 @@
     justify-content: center;
 }
 
+.lightTheme .link,
+.lightTheme .logo,
+.lightTheme .cartButton {
+    color: var(--color-midnight);
+}
+
+.lightTheme .alwaysGlass {
+    background: rgba(255, 255, 255, 0.5);
+    /* Slightly more prominent on light */
+}
+
 @media (max-width: 1024px) {
     .nav {
         display: none;

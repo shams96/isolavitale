@@ -2,12 +2,14 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import FadeIn from "@/components/FadeIn";
+import ThemeSetter from "@/components/ThemeSetter";
 
 export default function OriginPage() {
     return (
         <main className={styles.main}>
+            <ThemeSetter theme="light" />
             <FadeIn>
-                <section className={styles.grid}>
+                <section className={styles.firstGrid}>
                     <div className={styles.imageContainer}>
                         <video
                             src="/isola-vitale-origin.mp4"
