@@ -7,26 +7,25 @@ export default function OriginPage() {
     return (
         <main className={styles.main}>
             <FadeIn>
-                <header className={styles.header}>
-                    <span className={styles.label}>The Source</span>
-                    <h1 className={styles.title}>The Heart of the Waterfall</h1>
-                    <p className={styles.subtitle}>
-                        In the hidden jewel of Lazio—Isola del Liri—life is defined by the rhythm of the falls.
-                        Our lab sits at the confluence of history and nature, where the Cascata Grande has powered artisanal innovation for centuries.
-                    </p>
-                </header>
-            </FadeIn>
-
-            <FadeIn delay={200}>
-                <section className={styles.videoSection}>
-                    <video
-                        src="/isola-vitale-origin.mp4"
-                        className={styles.cinematicVideo}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                    />
+                <section className={styles.grid}>
+                    <div className={styles.imageContainer}>
+                        <video
+                            src="/isola-vitale-origin.mp4"
+                            className={styles.cinematicVideo}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                        />
+                    </div>
+                    <div className={styles.textContent}>
+                        <span className={styles.label}>The Source</span>
+                        <h1 className={styles.sectionTitle}>The Heart of the Waterfall</h1>
+                        <p className={styles.text}>
+                            In the hidden jewel of Lazio—Isola del Liri—life is defined by the rhythm of the falls.
+                            Our lab sits at the confluence of history and nature, where the Cascata Grande has powered artisanal innovation for centuries.
+                        </p>
+                    </div>
                 </section>
             </FadeIn>
 
