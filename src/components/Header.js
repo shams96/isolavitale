@@ -1,8 +1,8 @@
 "use client";
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import styles from './Header.module.css';
 import { useCart } from '@/context/CartContext';
-import { useState, useEffect } from 'react';
+import styles from './Header.module.css';
 
 export default function Header() {
     const { toggleDrawer, cart } = useCart();
@@ -10,14 +10,19 @@ export default function Header() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
+            setScrolled(window.scrollY > 20);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const headerClasses = [
+        styles.header,
+        scrolled ? styles.scrolled : styles.alwaysGlass
+    ].join(' ').trim();
+
     return (
-        <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+        <header className={headerClasses}>
             <nav className={styles.nav}>
                 <Link href="/products" className={styles.link}>Shop All</Link>
                 <Link href="/system" className={styles.link}>The System</Link>
@@ -27,9 +32,9 @@ export default function Header() {
                 <Link href="/journal" className={styles.link}>Journal</Link>
             </nav>
 
-            <Link href="/" className={styles.logo} style={{ fontFamily: 'var(--font-primary)', fontWeight: '700', letterSpacing: '0.5px', fontSize: '2.4rem', color: '#FFFFFF', textTransform: 'none' }}>
+            <Link href="/" className={styles.logo}>
                 Isola Vitale
-                <span style={{ display: 'block', fontSize: '11px', letterSpacing: '3px', fontWeight: '500', marginTop: '4px', opacity: '1', fontFamily: 'var(--font-primary)', textTransform: 'uppercase', color: '#C5A059' }}>
+                <span className={styles.logoSubtext}>
                     Milano
                 </span>
             </Link>

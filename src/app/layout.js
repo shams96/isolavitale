@@ -39,6 +39,7 @@ export const viewport = {
   maximumScale: 5,
 };
 
+import { Suspense } from 'react';
 import JsonLd from "@/components/JsonLd";
 
 export default function RootLayout({ children }) {

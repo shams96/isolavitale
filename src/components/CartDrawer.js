@@ -4,6 +4,7 @@ import styles from './CartDrawer.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import { PRODUCTS } from '@/data/items';
 
 export default function CartDrawer() {
     const { cart, isDrawerOpen, toggleDrawer, updateQuantity, removeFromCart, subtotal, addToCart } = useCart();
@@ -14,8 +15,17 @@ export default function CartDrawer() {
     const progress = Math.min((subtotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
     const remaining = FREE_SHIPPING_THRESHOLD - subtotal;
 
+    useEffect(() => {
+        if (isDrawerOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [isDrawerOpen]);
+
+    if (!isDrawerOpen) return null;
+
     // Smart Upsell Logic
-    const { PRODUCTS } = require('@/data/items'); // Dynamic import or move to top if client side allows
 
     // Find missing items from the system
     const systemIds = PRODUCTS.map(p => p.id);
@@ -44,17 +54,6 @@ export default function CartDrawer() {
     };
 
     const upsells = [mappedUpsell];
-
-
-    useEffect(() => {
-        if (isDrawerOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-    }, [isDrawerOpen]);
-
-    if (!isDrawerOpen) return null;
 
     return (
         <>
