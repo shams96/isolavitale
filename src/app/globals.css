@@ -1,13 +1,61 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Isola Vitale - Emerald & Gold Luxury */
+  --color-white: #FAFAF8;
+  /* Alabaster - Heavy paper/Cream */
+  --color-emerald: #2E5F4E;
+  /* Pantone 17-5638 TCX - Primary Brand */
+  --color-gold: #C5A059;
+  /* Pantone 871 C - Matte Gold Accent */
+  --color-midnight: #1A2E26;
+  /* Dark Jungle Green (Text) */
+  --color-silver: #E0E0E0;
+  /* Soft dividers */
+
+  /* Mapping */
+  --color-obsidian: var(--color-midnight);
+  --color-ivory: var(--color-white);
+  --color-accent: var(--color-gold);
+  /* Gold is the new accent */
+  --color-cobalt: var(--color-emerald);
+  /* Mapping old blue to new green */
+
+  /* Typography - Mediterranean Luxury */
+  /* Hero Font: Elegant serif with high contrast (Canicule Display alternative) */
+  --font-serif: var(--font-serif), 'Cormorant Garamond', 'Playfair Display', 'Georgia', serif;
+
+  /* Body Font: Clean Swiss sans-serif (Neue Haas Unica alternative) */
+  --font-sans: var(--font-sans), 'Work Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+  --font-primary: var(--font-sans);
+
+  /* Standardized Section & Typography Tokens */
+  --section-padding: 10rem 2rem;
+  --section-padding-mobile: 6rem 1.5rem;
+
+  --heading-size-display: 4.5rem;
+  /* Hero Display */
+  --heading-size-section: 3.5rem;
+  /* Main Section Titles */
+  --heading-size-item: 2.2rem;
+  /* Sub-items or Grid items */
+  --heading-size-card: 1.8rem;
+  /* Product or Info cards */
+
+  --page-padding-top: 140px;
+  --page-padding-top-mobile: 100px;
+
+  --text-size-body: 1rem;
+  --line-height-body: 1.6;
+  --text-opacity-muted: 0.75;
+
+  --border-standard: 1px solid rgba(197, 160, 89, 0.15);
+  --transition-standard: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html,
@@ -17,9 +65,8 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-midnight);
+  background: var(--color-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -39,4 +86,62 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+/* Universal Image Utilities */
+.u-aspect-ratio-plinth {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  background-color: var(--color-white);
+  /* Use brand white/cream */
+  overflow: hidden;
+  display: block;
+  border: 1px solid rgba(10, 10, 10, 0.05);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.02);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.u-aspect-ratio-plinth:hover {
+  border-color: var(--color-gold);
+  box-shadow: inset 0 0 60px rgba(197, 160, 89, 0.05);
+}
+
+/* Global Product Grid */
+.u-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+@media (max-width: 1100px) {
+  .u-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .u-product-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.u-image-fit {
+  object-fit: contain;
+  padding: 2.5rem;
+  /* More breathing room */
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.08));
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.u-aspect-ratio-plinth:hover .u-image-fit {
+  transform: scale(1.08) translateY(-5px);
+}
+
+html {
+  scroll-behavior: smooth;
 }

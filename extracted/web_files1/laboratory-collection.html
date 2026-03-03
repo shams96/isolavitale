@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Laboratory Collection - Isola Vitale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --emerald-primary: #2d5a27;
+            --emerald-light: #4a7c59;
+            --emerald-dark: #1a3318;
+            --gold-accent: #c9a96e;
+            --cream-base: #faf8f5;
+            --marble-white: #f7f5f2;
+            --charcoal: #2c2c2c;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--marble-white);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--emerald-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--emerald-primary);
+        }
+
+        .hero-collection {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald-primary) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .collection-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .collection-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .collection-description {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 16px;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .products-section {
+            padding: 100px 0;
+            background: var(--cream-base);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 60px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(45, 90, 39, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 300px;
+            background: linear-gradient(45deg, var(--emerald-light), var(--emerald-primary));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gold-accent);
+            color: var(--emerald-dark);
+            padding: 8px 16px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .product-content {
+            padding: 40px;
+        }
+
+        .product-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--emerald-primary);
+        }
+
+        .product-technologies {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .product-description {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+        }
+
+        .key-benefits {
+            margin-bottom: 30px;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits-list li {
+            font-size: 14px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(45, 90, 39, 0.1);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .benefits-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--emerald-primary);
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--emerald-primary);
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: var(--emerald-primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: var(--emerald-dark);
+        }
+
+        .technology-section {
+            padding: 100px 0;
+            background: var(--marble-white);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 40px;
+            border-left: 4px solid var(--emerald-primary);
+            transition: transform 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateX(10px);
+        }
+
+        .tech-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--emerald-primary);
+            margin-bottom: 15px;
+        }
+
+        .tech-description {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-content {
+                padding: 0 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .container {
+                padding: 0 20px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" class="logo">ISOLA VITALE</a>
+            <ul class="nav-links">
+                <li><a href="#products">Products</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="daily-collection.html">Daily Collection</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero-collection">
+        <div class="container">
+            <h1 class="collection-title">The Laboratory</h1>
+            <p class="collection-subtitle">Advanced Clinical Formulations</p>
+            <p class="collection-description">
+                Precision-engineered skincare featuring our most advanced cellular technologies. 
+                Each formulation combines multiple breakthrough ingredients for maximum efficacy, 
+                crafted for those who demand the highest level of scientific innovation in luxury skincare.
+            </p>
+        </div>
+    </section>
+
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">Clinical</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">THE CELLULAR ESSENCE</h3>
+                        <p class="product-technologies">OS-01 SENOMORPHIC + GLP-1 + FERMENTED RENEWAL</p>
+                        <p class="product-description">
+                            Revolutionary anti-aging essence that targets cellular senescence while providing 
+                            comprehensive protection and renewal. Our most advanced formula for visible age reversal.
+                        </p>
+                        <div class="key-benefits">
+                            <ul class="benefits-list">
+                                <li>Targets senescent cells for cellular renewal</li>
+                                <li>Advanced metabolic protection</li>
+                                <li>Enhanced bioavailability through fermentation</li>
+                                <li>Visible reduction in fine lines and wrinkles</li>
+                            </ul>
+                        </div>
+                        <div class="product-price">€280</div>
+                        <button class="add-to-cart">Add to Collection</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">Clinical</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">THE BARRIER CREAM</h3>
+                        <p class="product-technologies">DWAT RESTORATION + POSTBIOTIC COMPLEX</p>
+                        <p class="product-description">
+                            Advanced barrier repair treatment that rebuilds skin's fundamental moisture retention 
+                            while supporting optimal microbiome balance for long-term skin health.
+                        </p>
+                        <div class="key-benefits">
+                            <ul class="benefits-list">
+                                <li>Deep barrier restoration technology</li>
+                                <li>Microbiome optimization</li>
+                                <li>24-hour moisture retention</li>
+                                <li>Strengthens skin resilience</li>
+                            </ul>
+                        </div>
+                        <div class="product-price">€220</div>
+                        <button class="add-to-cart">Add to Collection</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">Clinical</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">THE SHIELD SPF 50</h3>
+                        <p class="product-technologies">ECTOIN DEFENSE + FERMENTED MATRIX</p>
+                        <p class="product-description">
+                            Ultimate environmental protection combining broad-spectrum UV defense with 
+                            extremophile-derived cellular protection against pollution and oxidative stress.
+                        </p>
+                        <div class="key-benefits">
+                            <ul class="benefits-list">
+                                <li>Broad-spectrum SPF 50 protection</li>
+                                <li>Anti-pollution defense</li>
+                                <li>Extremophile-derived protection</li>
+                                <li>Lightweight, non-greasy formula</li>
+                            </ul>
+                        </div>
+                        <div class="product-price">€180</div>
+                        <button class="add-to-cart">Add to Collection</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">Clinical</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">THE NOCTURNAL TREATMENT</h3>
+                        <p class="product-technologies">OS-01 + L-ORNITHINE + GLP-1 + FERMENTED RECOVERY</p>
+                        <p class="product-description">
+                            Intensive overnight renewal treatment featuring our complete technology matrix 
+                            for maximum cellular repair and regeneration during sleep.
+                        </p>
+                        <div class="key-benefits">
+                            <ul class="benefits-list">
+                                <li>Complete 4-technology integration</li>
+                                <li>Overnight cellular repair</li>
+                                <li>Volume restoration</li>
+                                <li>Advanced age reversal</li>
+                            </ul>
+                        </div>
+                        <div class="product-price">€320</div>
+                        <button class="add-to-cart">Add to Collection</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">Clinical</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">THE ATMOSPHERIC MIST</h3>
+                        <p class="product-technologies">ECTOIN SHIELD + FERMENTED HYDRATION</p>
+                        <p class="product-description">
+                            Luxury hydration mist that provides instant environmental protection and cellular 
+                            hydration. Perfect for refreshing skin throughout the day.
+                        </p>
+                        <div class="key-benefits">
+                            <ul class="benefits-list">
+                                <li>Instant cellular hydration</li>
+                                <li>Environmental stress protection</li>
+                                <li>Makeup-compatible formula</li>
+                                <li>Anytime application convenience</li>
+                            </ul>
+                        </div>
+                        <div class="product-price">€140</div>
+                        <button class="add-to-cart">Add to Collection</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">Clinical</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">THE OCULAR COMPLEX</h3>
+                        <p class="product-technologies">ALL 5 TECHNOLOGIES + EYE PEPTIDES</p>
+                        <p class="product-description">
+                            Our most comprehensive eye treatment featuring the complete Isola Vitale technology 
+                            matrix specifically optimized for the delicate eye area.
+                        </p>
+                        <div class="key-benefits">
+                            <ul class="benefits-list">
+                                <li>Complete 5-technology integration</li>
+                                <li>Specialized eye area peptides</li>
+                                <li>Dark circle reduction</li>
+                                <li>Fine line smoothing</li>
+                            </ul>
+                        </div>
+                        <div class="product-price">€380</div>
+                        <button class="add-to-cart">Add to Collection</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="technology-section" id="technology">
+        <div class="container">
+            <h2 class="section-title" style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; text-align: center; color: var(--emerald-primary); margin-bottom: 40px;">Breakthrough Technologies</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 60px; color: var(--text-secondary);">
+                Each Laboratory Collection product features multiple advanced technologies working in synergy 
+                to deliver unprecedented results in luxury skincare.
+            </p>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3 class="tech-name">OS-01 Senomorphic</h3>
+                    <p class="tech-description">
+                        Revolutionary peptide technology that specifically targets and eliminates senescent cells, 
+                        promoting cellular renewal and combating the fundamental causes of skin aging.
+                    </p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3 class="tech-name">GLP-1 Protection</h3>
+                    <p class="tech-description">
+                        Advanced metabolic support system that enhances skin's natural defense mechanisms 
+                        while promoting optimal cellular energy and protection against environmental damage.
+                    </p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3 class="tech-name">Fermented Complex</h3>
+                    <p class="tech-description">
+                        Precision-fermented botanical ingredients with enhanced bioavailability and potency, 
+                        delivering maximum efficacy through advanced biotechnology processing.
+                    </p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3 class="tech-name">DWAT Restoration</h3>
+                    <p class="tech-description">
+                        Deep barrier repair technology that rebuilds skin's fundamental moisture retention 
+                        capabilities and strengthens the skin's protective barrier function.
+                    </p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3 class="tech-name">Ectoin Defense</h3>
+                    <p class="tech-description">
+                        Extremophile-derived protection molecule that shields skin from environmental 
+                        stressors, pollution, and UV damage while supporting cellular stability.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.background = 'var(--gold-accent)';
+                this.style.color = 'var(--emerald-dark)';
+                this.innerHTML = 'Added to Collection ✓';
+                
+                setTimeout(() => {
+                    this.style.background = 'var(--emerald-primary)';
+                    this.style.color = 'white';
+                    this.innerHTML = 'Add to Collection';
+                }, 2000);
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Product card animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .tech-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+.container {
+    padding: var(--section-padding);
+    border-top: var(--border-standard);
+    background-color: var(--color-white);
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: var(--heading-size-section);
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.videoWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 4rem auto;
+    aspect-ratio: 16 / 9;
+    background-color: var(--color-silver);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.image {
+    transition: transform 0.7s ease;
+}
+
+.videoWrapper:hover .image {
+    transform: scale(1.03);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.playBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.videoWrapper:hover .playBtn {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.playIcon {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-left: 4px;
+    /* Optical adjustment */
+}
+
+.textOverlay {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 2;
+    color: #fff;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.playerWrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #000;
+}
+
+.videoPlayer {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    z-index: 10;
+}
+
+.instructions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.step {
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+}
+
+.stepNum {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+}
+
+.step p {
+    font-family: var(--font-sans);
+    font-size: var(--text-size-body);
+    line-height: var(--line-height-body);
+    opacity: var(--text-opacity-muted);
+}
+
+@media (max-width: 768px) {
+    .instructions {
+        grid-template-columns: 1fr;
+    }
+}

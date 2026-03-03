@@ -1,0 +1,146 @@
+.hero {
+    position: relative;
+    height: 90vh;
+    /* Campaign/Editorial Height */
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Strict Split */
+    background-color: var(--color-emerald);
+    /* Dark Editorial Background for Text Side */
+    overflow: hidden;
+}
+
+.visualContainer {
+    grid-column: 2;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.videoBackground {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    /* Optional: Keep Ken Burns or remove for video? Video usually has its own motion. Removing animation for video. */
+}
+
+/* Fallback/Original Image Class - kept for reference or poster */
+.background {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center 20%;
+    /* Dim the image slightly for text readability */
+    grid-column: 2;
+    animation: kenBurns 20s ease-out infinite alternate;
+    /* Cinematic Motion */
+}
+
+/* Subtle zoom effect on load/hover could be added here */
+
+.content {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 6rem;
+    z-index: 10;
+    color: var(--color-white);
+    text-align: left;
+}
+
+.headline {
+    font-family: var(--font-primary);
+    font-size: var(--heading-size-display);
+    line-height: 1.05;
+    font-weight: 300;
+    margin-bottom: 0;
+    letter-spacing: -0.02em;
+    color: var(--color-white);
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.subheadline {
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    margin-bottom: 2rem;
+    color: var(--color-gold);
+    opacity: 0;
+    /* Star hidden for animation */
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+.scrollIndicator {
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 2s ease-out forwards;
+    animation-delay: 2s;
+}
+
+/* Transforming text to a luxury button */
+.scrollIndicatorButton {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-ivory);
+    border: 1px solid rgba(244, 243, 239, 0.3);
+    background: rgba(10, 10, 10, 0.1);
+    backdrop-filter: blur(4px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.scrollIndicatorButton:hover {
+    background: var(--color-ivory);
+    color: var(--color-obsidian);
+    border-color: var(--color-ivory);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.7;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .headline {
+        font-size: 2.5rem;
+    }
+}

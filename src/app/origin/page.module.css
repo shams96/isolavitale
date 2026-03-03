@@ -1,0 +1,132 @@
+.main {
+    background-color: var(--color-ivory);
+    color: var(--color-obsidian);
+}
+
+.header {
+    padding: var(--page-padding-top) 2rem 6rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.label {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    display: block;
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: var(--heading-size-section);
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.8;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+}
+
+.reverse {
+    direction: rtl;
+    /* Check if this visual trick works or use order */
+}
+
+/* Reset direction for text inside rtl container */
+.reverse .textContent,
+.reverse .imageContainer {
+    direction: ltr;
+}
+
+.imageContainer {
+    position: relative;
+    height: 100%;
+    min-height: 600px;
+    background-color: #f0f0f0;
+}
+
+.image {
+    object-fit: cover;
+}
+
+.textContent {
+    padding: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.sectionTitle {
+    font-family: var(--font-serif);
+    font-size: var(--heading-size-item);
+    margin: 1rem 0 2rem;
+    font-weight: 400;
+}
+
+.text {
+    font-family: var(--font-sans);
+    font-size: var(--text-size-body);
+    line-height: var(--line-height-body);
+    opacity: var(--text-opacity-muted);
+    margin-bottom: 1rem;
+}
+
+.stat {
+    display: block;
+    margin-top: 3rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    .header {
+        padding: 100px 1.5rem 60px;
+    }
+
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .grid {
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .reverse {
+        flex-direction: column;
+    }
+
+    .imageContainer {
+        height: 50vh;
+        min-height: 400px;
+    }
+
+    .textContent {
+        padding: 4rem 1.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 2rem;
+    }
+}

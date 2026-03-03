@@ -1,0 +1,32 @@
+.magnetic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background-color: var(--color-white);
+    color: var(--color-obsidian);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    font-weight: 500;
+    /* Medium weight for premium feel */
+    border: 1px solid transparent;
+    transition: transform 0.1s ease-out, background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    /* 2025 Trend: Soft rounded corners or pill shape */
+    border-radius: 4px;
+}
+
+.magnetic:hover {
+    background-color: var(--color-gold);
+    color: var(--color-white);
+}
+
+.text {
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
+}

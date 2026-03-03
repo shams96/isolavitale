@@ -1,0 +1,128 @@
+.section {
+    padding: var(--section-padding);
+    background-color: var(--color-midnight);
+    color: var(--color-white);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.label {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: var(--heading-size-section);
+    font-weight: 400;
+    margin-top: 1rem;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+}
+
+@media (max-width: 900px) {
+
+    .item,
+    .item:nth-child(even) {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .visual {
+        width: 100%;
+        max-width: 100%;
+        /* Ensure it doesn't exceed viewport minus padding */
+        /* height handled by aspect ratio */
+    }
+
+    .details {
+        align-items: center;
+        text-align: center;
+    }
+
+    .desc {
+        text-align: center;
+    }
+}
+
+.item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.visual {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    flex-shrink: 0;
+    /* Uses global .u-aspect-ratio-plinth */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.visual :global(.u-image-fit) {
+    padding: 3rem;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+}
+
+/* .image styles handled by .u-image-fit */
+
+.details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.step {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+}
+
+.name {
+    font-family: var(--font-serif);
+    font-size: var(--heading-size-item);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+}
+
+.desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-size-body);
+    line-height: var(--line-height-body);
+    opacity: var(--text-opacity-muted);
+    max-width: 350px;
+}
+
+.link {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}

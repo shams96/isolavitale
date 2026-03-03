@@ -1,0 +1,59 @@
+﻿
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\app\cellular-chronos\page.js
+  34:76  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\app\checkout\page.js
+  88:65  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\app\checkout\success\page.js
+  45:21  error  Do not use an `<a>` element to navigate to `/products/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  61:21  error  Do not use an `<a>` element to navigate to `/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages           @next/next/no-html-link-for-pages
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\app\technology\page.js
+  35:180  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  39:158  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\app\terms\page.js
+  46:150  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  67:284  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\context\CartContext.js
+  13:24  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  11 |     useEffect(() => {
+  12 |         const savedCart = localStorage.getItem('biosphere_cart');
+> 13 |         if (savedCart) setCart(JSON.parse(savedCart));
+     |                        ^^^^^^^ Avoid calling setState() directly within an effect
+  14 |     }, []);
+  15 |
+  16 |     // Save cart to local storage  react-hooks/set-state-in-effect
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\sanity\schemas\collection.js
+  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\sanity\schemas\homepage.js
+  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\sanity\schemas\journal.js
+  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\sanity\schemas\legal.js
+  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\sanity\schemas\order.js
+  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\sanity\schemas\product.js
+  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+C:\Users\New User\dev\yo\aurabio\aurabio-web\src\sanity\schemas\settings.js
+  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+Γ£û 16 problems (9 errors, 7 warnings)
+
