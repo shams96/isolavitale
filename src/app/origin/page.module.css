@@ -1,44 +1,48 @@
 .main {
     background-color: var(--color-ivory);
-    color: var(--color-obsidian);
+    color: var(--color-midnight);
+    min-height: 100vh;
 }
 
 .header {
-    padding: var(--page-padding-top) 2rem 6rem;
+    padding: var(--page-padding-top) 2rem 8rem;
     text-align: center;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 .label {
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     color: var(--color-accent);
     display: block;
+    margin-bottom: 1.5rem;
 }
 
 .title {
     font-family: var(--font-serif);
     font-size: var(--heading-size-section);
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     font-weight: 400;
     line-height: 1.1;
 }
 
 .subtitle {
     font-family: var(--font-sans);
-    font-size: 1.1rem;
-    line-height: 1.8;
-    opacity: 0.8;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    opacity: 0.85;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 80vh;
+    min-height: 90vh;
+    border-top: var(--border-standard);
 }
 
 .reverse {
@@ -56,7 +60,8 @@
     position: relative;
     height: 100%;
     min-height: 600px;
-    background-color: #f0f0f0;
+    background-color: var(--color-white);
+    overflow: hidden;
 }
 
 .image {
@@ -64,26 +69,26 @@
 }
 
 .textContent {
-    padding: 6rem;
+    padding: 8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #fff;
+    background-color: var(--color-white);
 }
 
 .sectionTitle {
     font-family: var(--font-serif);
     font-size: var(--heading-size-item);
-    margin: 1rem 0 2rem;
+    margin: 1.5rem 0 2.5rem;
     font-weight: 400;
 }
 
 .text {
     font-family: var(--font-sans);
-    font-size: var(--text-size-body);
-    line-height: var(--line-height-body);
-    opacity: var(--text-opacity-muted);
-    margin-bottom: 1rem;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
 }
 
 .stat {
@@ -134,17 +139,19 @@
 .videoSection {
     width: 100%;
     max-width: 1400px;
-    margin: 0 auto 6rem;
+    margin: 0 auto 10rem;
     position: relative;
     overflow: hidden;
-    background-color: var(--color-obsidian);
-    aspect-ratio: 16 / 9;
-    border-radius: 4px;
+    background-color: var(--color-ivory);
+    border-top: var(--border-standard);
+    border-bottom: var(--border-standard);
+    padding: 4rem 0;
 }
 
 .cinematicVideo {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Changed from default to cover but with better container ratio */
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 4px;
 }
