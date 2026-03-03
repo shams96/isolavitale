@@ -16,6 +16,19 @@ export default function OriginPage() {
                 </header>
             </FadeIn>
 
+            <FadeIn delay={200}>
+                <section className={styles.videoSection}>
+                    <video
+                        src="/isola-vitale-origin.mp4"
+                        className={styles.cinematicVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                    />
+                </section>
+            </FadeIn>
+
             <section className={styles.grid}>
                 <div className={styles.imageContainer}>
                     <Image src="/lab-glass.png" alt="Cascata Grande Laboratory" fill className={styles.image} />
