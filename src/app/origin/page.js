@@ -2,14 +2,20 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import FadeIn from "@/components/FadeIn";
-import ThemeSetter from "@/components/ThemeSetter";
 
 export default function OriginPage() {
     return (
-        <main className={styles.main}>
-            <ThemeSetter theme="light" />
+        <main className={`${styles.main} env-white`}>
             <FadeIn>
                 <section className={styles.firstGrid}>
+                    <div className={styles.textContent}>
+                        <span className={styles.label}>The Source</span>
+                        <h1 className={styles.sectionTitle}>The Heart of the Waterfall</h1>
+                        <p className={styles.text}>
+                            In the hidden jewel of Lazio—Isola del Liri—life is defined by the rhythm of the falls.
+                            Our lab sits at the confluence of history and nature, where the Cascata Grande has powered artisanal innovation for centuries.
+                        </p>
+                    </div>
                     <div className={styles.imageContainer}>
                         <video
                             src="/isola-vitale-origin.mp4"
@@ -19,14 +25,6 @@ export default function OriginPage() {
                             muted
                             playsInline
                         />
-                    </div>
-                    <div className={styles.textContent}>
-                        <span className={styles.label}>The Source</span>
-                        <h1 className={styles.sectionTitle}>The Heart of the Waterfall</h1>
-                        <p className={styles.text}>
-                            In the hidden jewel of Lazio—Isola del Liri—life is defined by the rhythm of the falls.
-                            Our lab sits at the confluence of history and nature, where the Cascata Grande has powered artisanal innovation for centuries.
-                        </p>
                     </div>
                 </section>
             </FadeIn>
@@ -67,7 +65,7 @@ export default function OriginPage() {
             <FadeIn delay={200}>
                 <section className={styles.grid}>
                     <div className={styles.imageContainer}>
-                        <Image src="/refill-pod.png" alt="Refill Engineering" fill className={styles.image} />
+                        <Image src="/trio-modern.png" alt="Refill Engineering" fill className={styles.image} />
                     </div>
                     <div className={styles.textContent}>
                         <span className={styles.label}>Engineering</span>

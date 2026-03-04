@@ -60,7 +60,7 @@ export default function CheckoutPage() {
     }
 
     return (
-        <main className={styles.main}>
+        <main className={`${styles.main} env-white`}>
             <div className={styles.container}>
                 <h1 className={styles.title}>Secure Checkout</h1>
 

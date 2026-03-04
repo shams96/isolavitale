@@ -1,55 +1,70 @@
 :root {
-  /* Isola Vitale - Emerald & Gold Luxury */
-  --color-white: #FAFAF8;
-  /* Alabaster - Heavy paper/Cream */
-  --color-emerald: #2E5F4E;
-  /* Pantone 17-5638 TCX - Primary Brand */
+  /* Isola Vitale - The Opulence Manifesto */
+  --color-white: #FFFFFF;
+  --color-ivory: #FAFAF8;
+  --color-emerald: #0A1A15;
+  /* Deepest Luxury Emerald */
+  --color-emerald-light: #1A3A2F;
   --color-gold: #C5A059;
-  /* Pantone 871 C - Matte Gold Accent */
-  --color-midnight: #1A2E26;
-  /* Dark Jungle Green (Text) */
-  --color-silver: #E0E0E0;
-  /* Soft dividers */
-
-  /* Mapping */
+  --color-midnight: #050505;
+  /* Near pure black */
   --color-obsidian: var(--color-midnight);
-  --color-ivory: var(--color-white);
   --color-accent: var(--color-gold);
-  /* Gold is the new accent */
-  --color-cobalt: var(--color-emerald);
-  /* Mapping old blue to new green */
 
-  /* Typography - Mediterranean Luxury */
-  /* Hero Font: Elegant serif with high contrast (Canicule Display alternative) */
-  --font-serif: var(--font-serif), 'Cormorant Garamond', 'Playfair Display', 'Georgia', serif;
+  /* Typography - Elite Collection */
+  --font-serif: var(--font-serif), 'Cormorant Garamond', serif;
+  --font-sans: var(--font-sans), 'Work Sans', sans-serif;
 
-  /* Body Font: Clean Swiss sans-serif (Neue Haas Unica alternative) */
-  --font-sans: var(--font-sans), 'Work Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  /* Spacing & Layout - Couture Rhythm */
+  --section-padding: 15rem 6rem;
+  --section-padding-mobile: 10rem 2rem;
 
-  --font-primary: var(--font-sans);
+  --heading-size-display: 6rem;
+  --heading-size-section: 4.5rem;
+  --heading-size-item: 2.8rem;
+  --heading-size-card: 1.4rem;
 
-  /* Standardized Section & Typography Tokens */
-  --section-padding: 10rem 2rem;
-  --section-padding-mobile: 6rem 1.5rem;
+  --page-padding-top: 180px;
+  --page-padding-top-mobile: 140px;
 
-  --heading-size-display: 4.5rem;
-  /* Hero Display */
-  --heading-size-section: 3.5rem;
-  /* Main Section Titles */
-  --heading-size-item: 2.2rem;
-  /* Sub-items or Grid items */
-  --heading-size-card: 1.8rem;
-  /* Product or Info cards */
+  --letter-spacing-couture: 0.3em;
+  --letter-spacing-label: 0.4em;
 
-  --page-padding-top: 140px;
-  --page-padding-top-mobile: 100px;
+  --text-size-body: 1.1rem;
+  --line-height-body: 1.9;
+  --text-opacity-muted: 0.5;
 
-  --text-size-body: 1rem;
-  --line-height-body: 1.6;
-  --text-opacity-muted: 0.75;
+  /* Detailed Refinement */
+  --border-ultra: 0.5px solid rgba(197, 160, 89, 0.2);
+  --border-standard: 0.5px solid rgba(255, 255, 255, 0.1);
+  --transition-luxury: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-  --border-standard: 1px solid rgba(197, 160, 89, 0.15);
-  --transition-standard: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+/* Color Shield Environments */
+.env-emerald {
+  background-color: var(--color-emerald);
+  color: var(--color-white);
+}
+
+.env-white {
+  background-color: var(--color-white);
+  color: var(--color-emerald);
+}
+
+.env-black {
+  background-color: var(--color-midnight);
+  color: var(--color-white);
+}
+
+.env-emerald .u-label,
+.env-black .u-label {
+  color: var(--color-gold);
+}
+
+.env-white .u-label {
+  color: var(--color-emerald-light);
+  opacity: 0.7;
 }
 
 * {
@@ -93,53 +108,55 @@ a {
   position: relative;
   width: 100%;
   aspect-ratio: 4/5;
-  background-color: var(--color-white);
-  /* Use brand white/cream */
+  background-color: var(--color-ivory);
   overflow: hidden;
   display: block;
-  border: 1px solid rgba(10, 10, 10, 0.05);
-  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.02);
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  border: var(--border-ultra);
+  transition: var(--transition-luxury);
 }
 
 .u-aspect-ratio-plinth:hover {
   border-color: var(--color-gold);
-  box-shadow: inset 0 0 60px rgba(197, 160, 89, 0.05);
+  background-color: var(--color-white);
 }
 
 /* Global Product Grid */
 .u-product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4rem 2rem;
+  gap: 12rem 4rem;
+  /* Extreme vertical breath */
   max-width: 1400px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 8rem 4rem;
 }
 
 @media (max-width: 1100px) {
   .u-product-grid {
     grid-template-columns: repeat(2, 1fr);
+    padding: 6rem 2rem;
+    gap: 8rem 2rem;
   }
 }
 
 @media (max-width: 700px) {
   .u-product-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    padding: 6rem 1.5rem;
+    gap: 6rem;
   }
 }
 
 .u-image-fit {
   object-fit: contain;
-  padding: 2.5rem;
-  /* More breathing room */
-  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.08));
-  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  padding: 4rem;
+  /* Elite breathing room */
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.08));
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .u-aspect-ratio-plinth:hover .u-image-fit {
-  transform: scale(1.08) translateY(-5px);
+  transform: scale(1.08) translateY(-10px);
 }
 
 html {

@@ -1,5 +1,6 @@
 import ProductCard from '@/components/ProductCard';
 import { PRODUCTS } from '@/data/items';
+import FadeIn from '@/components/FadeIn';
 import styles from './page.module.css';
 
 export const dynamic = 'force-dynamic';
@@ -11,17 +12,19 @@ export const metadata = {
 
 export default function ProductsPage() {
     return (
-        <main className={styles.main}>
+        <main className={`${styles.main} env-white`}>
             <div className={styles.container}>
 
-                <div className={styles.header}>
-                    <span className={styles.label}>
-                        The Collections
-                    </span>
-                    <h1 className={styles.title}>
-                        Cellular Vitality. Isola Crafted.
-                    </h1>
-                </div>
+                <header className={styles.header}>
+                    <FadeIn>
+                        <span className={styles.label}>The Collections</span>
+                        <h1 className={styles.title}>
+                            Cellular Vitality<br />
+                            <span className={styles.titleAccent}>Isola Crafted</span>
+                        </h1>
+                        <div className={styles.divider} />
+                    </FadeIn>
+                </header>
 
                 <div className="u-product-grid">
                     {PRODUCTS.map(product => (

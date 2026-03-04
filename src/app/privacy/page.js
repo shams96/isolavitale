@@ -1,4 +1,5 @@
 import { PortableText } from "next-sanity";
+import { client } from "@/sanity/client";
 import ThemeSetter from "@/components/ThemeSetter";
 
 export const revalidate = 60; // Revalidate every minute
@@ -76,7 +77,7 @@ export default async function PrivacyPage() {
                             <section>
                                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', marginBottom: '1rem' }}>5. Contact Details</h2>
                                 <p>
-                                    If you have any questions about this privacy policy or our privacy practices, please contact us at: <a href="mailto:info@1hubsolutions.com" style={{ textDecoration: 'underline', color: 'var(--color-accent)' }}>info@1hubsolutions.com</a>
+                                    If you have any questions about this privacy policy or our privacy practices, please contact us at: <a href="mailto:info@isolavitale.com" style={{ textDecoration: 'underline', color: 'var(--color-accent)' }}>info@isolavitale.com</a>
                                 </p>
                             </section>
                         </div>

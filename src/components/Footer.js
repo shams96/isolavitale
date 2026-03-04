@@ -3,41 +3,50 @@ import styles from './Footer.module.css';
 
 export default function Footer() {
     return (
-        <footer className={styles.footer} style={{ backgroundColor: 'var(--color-emerald)', color: 'var(--color-white)' }}>
-            <div className={styles.top}>
-                <div className={styles.brand}>
-                    <span className={styles.logo} style={{ color: 'var(--color-gold)' }}>ISOLA VITALE</span>
-                    <span className={styles.tagline} style={{ color: 'var(--color-gold)', opacity: 0.8 }}>Est. 2025</span>
-                    <div style={{ marginTop: '1.5rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-                        <div>
-                            <p style={{ fontWeight: 'bold', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem', color: 'var(--color-white)' }}>Headquarters</p>
-                            <p style={{ opacity: 0.8, fontSize: '0.8rem', lineHeight: '1.6', color: 'var(--color-white)' }}>
-                                1314 Waterdown Dr.<br />
-                                Allen TX 75013, USA
-                            </p>
-                        </div>
-                        <div>
-                            <p style={{ fontWeight: 'bold', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem', color: 'var(--color-white)' }}>Laboratory</p>
-                            <p style={{ opacity: 0.8, fontSize: '0.8rem', lineHeight: '1.6', color: 'var(--color-white)' }}>
-                                Via Borgo San Domenico 134<br />
-                                03036 Isola del Liri (FR), Italy
-                            </p>
-                        </div>
+        <footer className={styles.footer}>
+            <div className={styles.container}>
+                <div className={styles.top}>
+                    <div className={styles.brandColumn}>
+                        <span className={styles.logo}>ISOLA VITALE</span>
+                        <p className={styles.tagline}>
+                            Cellular Vitality. Isola Crafted. Laboratory-grade efficacy formulated in Italy.
+                        </p>
+                    </div>
+
+                    <div className={styles.column}>
+                        <h4 className={styles.columnTitle}>Collections</h4>
+                        <ul className={styles.links}>
+                            <li><Link href="/products" className={styles.link}>All Products</Link></li>
+                            <li><Link href="/daily-collection" className={styles.link}>Daily Collection</Link></li>
+                            <li><Link href="/laboratory-collection" className={styles.link}>Laboratory</Link></li>
+                        </ul>
+                    </div>
+
+                    <div className={styles.column}>
+                        <h4 className={styles.columnTitle}>Exploration</h4>
+                        <ul className={styles.links}>
+                            <li><Link href="/origin" className={styles.link}>Our Origin</Link></li>
+                            <li><Link href="/technology" className={styles.link}>Technology</Link></li>
+                            <li><Link href="/journal" className={styles.link}>Journal</Link></li>
+                        </ul>
+                    </div>
+
+                    <div className={styles.column}>
+                        <h4 className={styles.columnTitle}>Contact</h4>
+                        <ul className={styles.links}>
+                            <li><a href="mailto:info@isolavitale.com" className={styles.link}>Inquiries</a></li>
+                            <li><Link href="/contact" className={styles.link}>Support</Link></li>
+                        </ul>
                     </div>
                 </div>
 
-                <div className={styles.links}>
-                    <div className={styles.column}>
-                        <Link href="/contact" className={styles.link}>Contact</Link>
-                        <a href="mailto:info@1hubsolutions.com" className={styles.link}>info@1hubsolutions.com</a>
+                <div className={styles.bottom}>
+                    <p className={styles.copyright}>© {new Date().getFullYear()} Isola Vitale. All Rights Reserved.</p>
+                    <div className={styles.legal}>
                         <Link href="/privacy" className={styles.link}>Privacy</Link>
                         <Link href="/terms" className={styles.link}>Terms</Link>
                     </div>
                 </div>
-            </div>
-
-            <div className={styles.bottom}>
-                <span className={styles.copyright}>© {new Date().getFullYear()} Isola Vitale</span>
             </div>
         </footer>
     );

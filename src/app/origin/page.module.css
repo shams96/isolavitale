@@ -1,45 +1,9 @@
 .main {
-    background-color: var(--color-ivory);
-    color: var(--color-midnight);
     min-height: 100vh;
+    padding-top: var(--page-padding-top);
 }
 
-.firstGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 90vh;
-    border-top: var(--border-standard);
-    padding-top: 80px;
-    /* Space for fixed header */
-}
-
-.label {
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-accent);
-    display: block;
-    margin-bottom: 1.5rem;
-}
-
-.title {
-    font-family: var(--font-serif);
-    font-size: var(--heading-size-section);
-    margin-bottom: 2.5rem;
-    font-weight: 400;
-    line-height: 1.1;
-}
-
-.subtitle {
-    font-family: var(--font-sans);
-    font-size: 1.25rem;
-    line-height: 1.7;
-    opacity: 0.85;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
+.firstGrid,
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -47,101 +11,102 @@
     border-top: var(--border-standard);
 }
 
-.reverse {
-    direction: rtl;
-    /* Check if this visual trick works or use order */
+.textContent {
+    padding: 8rem 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-/* Reset direction for text inside rtl container */
+.label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: var(--letter-spacing-label);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    color: var(--color-gold);
+}
+
+.sectionTitle {
+    font-family: var(--font-serif);
+    font-size: var(--heading-size-section);
+    line-height: 1;
+    font-weight: 300;
+    margin-bottom: 3rem;
+}
+
+.text {
+    font-family: var(--font-sans);
+    font-size: var(--text-size-body);
+    line-height: var(--line-height-body);
+    opacity: 0.8;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+.stat {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: var(--border-ultra);
+}
+
+.imageContainer {
+    position: relative;
+    background-color: var(--color-ivory);
+    overflow: hidden;
+}
+
+.image,
+.cinematicVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-luxury);
+}
+
+.imageContainer:hover .image,
+.imageContainer:hover .cinematicVideo {
+    transform: scale(1.05);
+}
+
+.reverse {
+    direction: rtl;
+}
+
 .reverse .textContent,
 .reverse .imageContainer {
     direction: ltr;
 }
 
-.imageContainer {
-    position: relative;
-    height: 100%;
-    min-height: 600px;
-    background-color: var(--color-white);
-    overflow: hidden;
-}
+@media (max-width: 1024px) {
 
-.image {
-    object-fit: cover;
-}
-
-.textContent {
-    padding: 8rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: var(--color-white);
-}
-
-.sectionTitle {
-    font-family: var(--font-serif);
-    font-size: var(--heading-size-item);
-    margin: 1.5rem 0 2.5rem;
-    font-weight: 400;
-}
-
-.text {
-    font-family: var(--font-sans);
-    font-size: 1.15rem;
-    line-height: 1.8;
-    opacity: 0.8;
-    margin-bottom: 1.5rem;
-}
-
-.stat {
-    display: block;
-    margin-top: 3rem;
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Mobile Responsive */
-@media (max-width: 900px) {
-    .header {
-        padding: 100px 1.5rem 60px;
-    }
-
-    .title {
-        font-size: 2.2rem;
-    }
-
+    .firstGrid,
     .grid {
-        display: flex;
-        flex-direction: column;
-        min-height: auto;
-    }
-
-    .reverse {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 
     .imageContainer {
         height: 50vh;
-        min-height: 400px;
     }
 
     .textContent {
-        padding: 4rem 1.5rem;
+        padding: 4rem 2rem;
     }
 
     .sectionTitle {
-        font-size: 2rem;
+        font-size: 3rem;
     }
-}
 
-.cinematicVideo {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    border-radius: 4px;
+    .reverse {
+        display: flex;
+        flex-direction: column;
+    }
 }

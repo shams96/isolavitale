@@ -1,4 +1,5 @@
 import { PortableText } from "next-sanity";
+import { client } from "@/sanity/client";
 import ThemeSetter from "@/components/ThemeSetter";
 
 export const revalidate = 60; // Revalidate every minute
@@ -58,7 +59,7 @@ export default async function TermsPage() {
                             <section>
                                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', marginBottom: '1rem' }}>4. Returns and Refunds</h2>
                                 <p>
-                                    Our goal is to ensure that you are completely satisfied with your purchase. If for any reason you are not satisfied, please contact us at <a href="mailto:info@1hubsolutions.com" style={{ textDecoration: 'underline', color: 'var(--color-accent)' }}>info@1hubsolutions.com</a> within 30 days of your purchase to arrange a return. Products must be returned in their original condition.
+                                    Our goal is to ensure that you are completely satisfied with your purchase. If for any reason you are not satisfied, please contact us at <a href="mailto:info@isolavitale.com" style={{ textDecoration: 'underline', color: 'var(--color-accent)' }}>info@isolavitale.com</a> within 30 days of your purchase to arrange a return. Products must be returned in their original condition.
                                 </p>
                             </section>
 

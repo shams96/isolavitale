@@ -23,7 +23,7 @@ export default function Hero({ imageSrc, headline, subheadline, cta, ctaLink }) 
     }, []);
 
     return (
-        <section className={styles.hero}>
+        <section className={`${styles.hero} env-emerald`}>
             <div className={styles.content}>
                 <h2 className={styles.subheadline}>{subheadline || "Bio-Adaptive Intelligence"}</h2>
                 <h1 className={styles.headline} dangerouslySetInnerHTML={{ __html: headline || "The Inevitability of<br />Timeless Skin" }} />

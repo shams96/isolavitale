@@ -1,31 +1,28 @@
 .section {
     padding: var(--section-padding);
-    background-color: var(--color-ivory);
-    color: var(--color-obsidian);
-    width: 100%;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 8rem;
+    gap: 15rem;
 }
 
 .block {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    gap: 8rem;
     align-items: center;
 }
 
-.block.reverse .content {
-    order: 2;
+.reverse {
+    direction: rtl;
 }
 
-.block.reverse .imageContainer {
-    order: 1;
+.reverse .content {
+    direction: ltr;
 }
 
 .content {
@@ -35,47 +32,61 @@
 }
 
 .label {
+    display: block;
     font-family: var(--font-sans);
     font-size: 0.75rem;
+    letter-spacing: var(--letter-spacing-label);
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-accent);
+    font-weight: 500;
 }
 
 .headline {
     font-family: var(--font-serif);
     font-size: var(--heading-size-section);
-    line-height: 1.1;
-    font-weight: 400;
+    line-height: 1;
+    font-weight: 300;
+    color: var(--color-midnight);
 }
 
 .text {
     font-family: var(--font-sans);
     font-size: var(--text-size-body);
     line-height: var(--line-height-body);
-    opacity: var(--text-opacity-muted);
-    max-width: 450px;
+    opacity: 0.8;
+    max-width: 500px;
 }
 
 .imageContainer {
     position: relative;
-    height: 700px;
-    width: 100%;
-    background-color: var(--color-midnight);
+    aspect-ratio: 4/5;
+    background: var(--color-ivory);
+    overflow: hidden;
+    border: var(--border-ultra);
 }
 
 .image {
     object-fit: cover;
-    border-radius: 2px;
-    opacity: 0.9;
+    transition: var(--transition-luxury);
 }
 
-@media (max-width: 900px) {
+.imageContainer:hover .image {
+    transform: scale(1.03);
+}
 
-    .block,
-    .block.reverse {
+@media (max-width: 1100px) {
+    .block {
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .block {
         grid-template-columns: 1fr;
         gap: 4rem;
         direction: ltr;
+    }
+
+    .headline {
+        font-size: 3rem;
     }
 }

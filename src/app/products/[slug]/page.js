@@ -110,7 +110,7 @@ export default async function ProductPage({ params }) {
     }));
 
     return (
-        <main className={styles.main}>
+        <main className={`${styles.main} env-white`}>
             <JsonLd data={productSchema} />
             {/* Breadcrumbs */}
             <div className={styles.breadcrumbs}>

@@ -95,21 +95,28 @@
 }
 
 .sectionTitle {
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
     letter-spacing: 0.05em;
 }
 
 .input {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 0;
-    /* Sharp edges for premium feel */
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--color-ivory);
+    border: var(--border-ultra);
     font-family: var(--font-sans);
-    background-color: #fff;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    transition: var(--transition-fast);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    background: var(--color-white);
 }
 
 .row {
@@ -122,16 +129,23 @@
 }
 
 .submit {
-    margin-top: 2rem;
-    padding: 1.2rem;
-    background-color: var(--color-obsidian);
-    color: var(--color-ivory);
+    width: 100%;
+    padding: 1.5rem;
+    background: var(--color-emerald);
+    color: var(--color-white);
     border: none;
     font-family: var(--font-sans);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2em;
+    font-size: 0.85rem;
     cursor: pointer;
-    transition: opacity 0.3s ease;
+    transition: var(--transition-luxury);
+}
+
+.submit:hover {
+    background: var(--color-midnight);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .submit:disabled {
@@ -153,9 +167,10 @@
 
 /* Summary Column */
 .summaryColumn {
-    background-color: #fff;
-    padding: 2rem;
-    border: 1px solid #eee;
+    padding: 4rem;
+    background: var(--color-ivory);
+    border: var(--border-ultra);
+    height: fit-content;
     position: sticky;
     top: 8rem;
 }
@@ -169,7 +184,9 @@
 .summaryItem {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 1.5rem;
     margin-bottom: 1.5rem;
+    border-bottom: var(--border-ultra);
 }
 
 .itemInfo {
@@ -179,7 +196,8 @@
 
 .itemName {
     font-family: var(--font-serif);
-    font-size: 1rem;
+    font-size: 1.1rem;
+    display: block;
 }
 
 .itemVariant {
@@ -194,14 +212,13 @@
 
 .itemPrice {
     font-family: var(--font-sans);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .summaryTotal {
     display: flex;
     justify-content: space-between;
     font-family: var(--font-serif);
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding-top: 1rem;
+    font-size: 1.8rem;
+    margin-top: 3rem;
 }

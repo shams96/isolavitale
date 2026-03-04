@@ -14,7 +14,7 @@ export default function ProductShowcase() {
     const products = showcaseSkus.map(slug => getProductBySlug(slug)).filter(Boolean);
 
     return (
-        <section className={styles.section}>
+        <section className={`${styles.section} env-black`}>
             <div className={styles.container}>
                 <div className={styles.header}>
                     <span className={styles.label}>The Ritual</span>
