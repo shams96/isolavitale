@@ -5,14 +5,24 @@ import { sendOrderConfirmation } from '@/lib/email';
 
 export const dynamic = 'force-dynamic';
 
-// Initialize Sanity client with write permissions
-const sanityClient = createClient({
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-    apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01',
-    token: process.env.SANITY_API_TOKEN,
-    useCdn: false,
-});
+// Helper to get Sanity client with write permissions
+function getSanityClient() {
+    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+    const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+    const token = process.env.SANITY_API_TOKEN;
+
+    if (!projectId || !dataset || !token) {
+        throw new Error('Missing Sanity configuration (projectId, dataset, or token)');
+    }
+
+    return createClient({
+        projectId,
+        dataset,
+        apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01',
+        token,
+        useCdn: false,
+    });
+}
 
 export async function POST(req) {
     try {
@@ -104,13 +114,13 @@ async function handleCheckoutCompleted(session, stripe) {
             },
             shippingAddress: fullSession.shipping_details?.address
                 ? {
-                      line1: fullSession.shipping_details.address.line1 || '',
-                      line2: fullSession.shipping_details.address.line2 || '',
-                      city: fullSession.shipping_details.address.city || '',
-                      state: fullSession.shipping_details.address.state || '',
-                      postalCode: fullSession.shipping_details.address.postal_code || '',
-                      country: fullSession.shipping_details.address.country || '',
-                  }
+                    line1: fullSession.shipping_details.address.line1 || '',
+                    line2: fullSession.shipping_details.address.line2 || '',
+                    city: fullSession.shipping_details.address.city || '',
+                    state: fullSession.shipping_details.address.state || '',
+                    postalCode: fullSession.shipping_details.address.postal_code || '',
+                    country: fullSession.shipping_details.address.country || '',
+                }
                 : null,
             items: lineItems.map((item) => ({
                 name: item.description,
@@ -131,7 +141,7 @@ async function handleCheckoutCompleted(session, stripe) {
         };
 
         // Create order in Sanity
-        const createdOrder = await sanityClient.create(orderDoc);
+        const createdOrder = await getSanityClient().create(orderDoc);
         console.log('Order created in Sanity:', createdOrder._id);
 
         // Send order confirmation email
