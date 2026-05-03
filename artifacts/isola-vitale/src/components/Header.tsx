@@ -44,7 +44,7 @@ export default function Header() {
               <path d="M19 7H16V6C16 3.79086 14.2091 2 12 2C9.79086 2 8 3.79086 8 6V7H5C3.89543 7 3 7.89543 3 9V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V9C21 7.89543 20.1046 7 19 7Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M8 7V6C8 3.79086 9.79086 2 12 2C14.2091 2 16 3.79086 16 6V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className={styles.badge}>{cart.length}</span>
+            <span className={styles.badge}>{cart.reduce((a, b) => a + b.quantity, 0)}</span>
           </div>
         </button>
       </div>

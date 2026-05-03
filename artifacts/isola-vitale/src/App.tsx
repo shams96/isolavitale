@@ -27,6 +27,7 @@ import DailyCollectionPage from "@/pages/DailyCollectionPage";
 import LaboratoryCollectionPage from "@/pages/LaboratoryCollectionPage";
 import CellularChronosPage from "@/pages/CellularChronosPage";
 import DiagnosisPage from "@/pages/DiagnosisPage";
+import AdminPage from "@/pages/AdminPage";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,7 @@ function Router() {
       <Route path="/laboratory-collection" component={LaboratoryCollectionPage} />
       <Route path="/cellular-chronos" component={CellularChronosPage} />
       <Route path="/diagnosis" component={DiagnosisPage} />
+      <Route path="/admin" component={AdminPage} />
       <Route component={NotFound} />
     </Switch>
   );
