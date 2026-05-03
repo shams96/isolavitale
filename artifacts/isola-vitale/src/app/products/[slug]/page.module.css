@@ -1,164 +1,380 @@
 .main {
     min-height: 100vh;
-    padding-top: var(--page-padding-top);
+    background: var(--color-ivory);
+    padding-top: 0;
+}
+
+/* ═══ TWO-COLUMN GRID ═══════════════════════════════════════════════════════ */
+
+.grid {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    align-items: start;
+}
+
+/* ═══ LEFT — Sticky Image Panel ═════════════════════════════════════════════ */
+
+.imagePanel {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background: #EDE9E3;
+    overflow: hidden;
+}
+
+.productImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 9rem 7rem;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imagePanel:hover .productImage {
+    transform: scale(1.03);
 }
 
 .breadcrumbs {
-    padding: 2rem 6rem;
+    position: absolute;
+    top: calc(var(--page-padding-top) - 1.5rem);
+    left: 3.5rem;
+    z-index: 10;
     font-family: var(--font-sans);
-    font-size: 0.7rem;
-    color: var(--color-emerald);
-    opacity: 0.5;
+    font-size: 0.6rem;
+    color: var(--color-obsidian);
+    opacity: 0.3;
     text-transform: uppercase;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.28em;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .breadcrumbs a {
     text-decoration: none;
     color: inherit;
-    transition: var(--transition-fast);
+    transition: opacity 0.2s;
 }
 
-.breadcrumbs a:hover {
-    opacity: 1;
-    color: var(--color-gold);
+.breadcrumbs a:hover { opacity: 0.7; }
+
+.breadcrumbSep { opacity: 0.4; }
+
+.imageSideLabel {
+    position: absolute;
+    bottom: 3.5rem;
+    right: 2.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--color-obsidian);
+    opacity: 0.18;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 0;
-}
+/* ═══ RIGHT — Info Panel ═════════════════════════════════════════════════════*/
 
-.imageContainer {
-    position: relative;
-    background-color: var(--color-ivory);
-    height: 90vh;
-}
-
-.info {
-    padding: 8rem 6rem;
+.infoPanel {
+    padding: calc(var(--page-padding-top) + 3.5rem) 5.5rem 8rem 5rem;
     display: flex;
     flex-direction: column;
-    gap: 6rem;
+    background: var(--color-ivory);
+}
+
+.collectionRow {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .subtitle {
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.62rem;
     text-transform: uppercase;
-    letter-spacing: var(--letter-spacing-label);
+    letter-spacing: 0.45em;
     color: var(--color-gold);
-    display: block;
-    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.stepPill {
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-obsidian);
+    opacity: 0.3;
+    border: 0.5px solid rgba(10, 26, 21, 0.2);
+    padding: 0.28rem 0.7rem;
+    border-radius: 20px;
 }
 
 .name {
     font-family: var(--font-serif);
-    font-size: 3.2rem;
+    font-size: 3.6rem;
     font-weight: 300;
-    letter-spacing: -0.01em;
-    line-height: 1.05;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    color: var(--color-emerald);
     margin-bottom: 2rem;
 }
 
 .technologies {
     font-family: var(--font-sans);
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
+    font-size: 0.67rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    font-weight: 600;
-    opacity: 0.4;
+    font-weight: 500;
+    opacity: 0.28;
     margin-bottom: 2rem;
+    line-height: 1.9;
+    color: var(--color-emerald);
 }
 
 .ratingSummary {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
 }
 
 .stars {
     color: var(--color-gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
 }
 
 .ratingText {
-    opacity: 0.6;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    opacity: 0.4;
     text-decoration: underline;
     cursor: pointer;
+    color: var(--color-emerald);
+    letter-spacing: 0.04em;
 }
 
 .truth {
     font-family: var(--font-serif);
-    font-size: 1.8rem;
+    font-size: 1.25rem;
     font-style: italic;
-    line-height: 1.5;
-    opacity: 0.7;
-    max-width: 600px;
+    line-height: 1.7;
+    color: var(--color-emerald);
+    opacity: 0.6;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 0.5px solid rgba(10, 26, 21, 0.1);
 }
 
-.accordions {
-    margin-top: 6rem;
-    border-top: var(--border-light);
+/* ── Trust row ── */
+.trustRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 0.5px solid rgba(10, 26, 21, 0.1);
+    margin: 2.5rem 0;
 }
+
+.trustItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1.2rem 1.2rem;
+    border-right: 0.5px solid rgba(10, 26, 21, 0.1);
+}
+
+.trustItem:last-child { border-right: none; }
+
+.trustIcon {
+    font-size: 0.95rem;
+    opacity: 0.55;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.trustLabel {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    color: var(--color-emerald);
+    opacity: 0.8;
+}
+
+.trustValue {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    color: var(--color-obsidian);
+    opacity: 0.4;
+    line-height: 1.4;
+}
+
+/* ── Accordions ── */
+.accordions {
+    margin-top: 3rem;
+    border-top: 0.5px solid rgba(10, 26, 21, 0.1);
+}
+
+/* ═══ SCIENCE SECTION ════════════════════════════════════════════════════════*/
+
+.scienceSection {
+    background: var(--color-emerald);
+    color: var(--color-ivory);
+    padding: 10rem 8rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10rem;
+    align-items: start;
+}
+
+.scienceLeft {
+    position: sticky;
+    top: 6rem;
+}
+
+.scienceLabel {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.45em;
+    color: var(--color-gold);
+    display: block;
+    margin-bottom: 2rem;
+}
+
+.scienceHeading {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--color-ivory);
+    margin-bottom: 2rem;
+}
+
+.scienceDuration {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(250, 250, 248, 0.28);
+    margin-top: 2rem;
+}
+
+.scienceResults {
+    display: flex;
+    flex-direction: column;
+}
+
+.scienceStat {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 3rem;
+    align-items: center;
+    border-bottom: 0.5px solid rgba(250, 250, 248, 0.1);
+    padding: 2.5rem 0;
+}
+
+.scienceStat:first-child {
+    border-top: 0.5px solid rgba(250, 250, 248, 0.1);
+}
+
+.scienceStatValue {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--color-gold);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.scienceStatMetric {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(250, 250, 248, 0.45);
+    line-height: 1.7;
+}
+
+/* ═══ UPSELL SECTION ═════════════════════════════════════════════════════════*/
 
 .upsellSection {
-    padding: var(--section-padding);
-    background-color: var(--color-ivory);
+    padding: 10rem 8rem;
+    background: var(--color-ivory);
 }
 
 .upsellHeader {
-    text-align: center;
-    margin-bottom: 8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 0.5px solid rgba(10, 26, 21, 0.1);
 }
 
 .upsellTitle {
     font-family: var(--font-serif);
-    font-size: var(--heading-size-section);
+    font-size: 2.4rem;
     font-weight: 300;
-    margin-bottom: 2rem;
+    color: var(--color-emerald);
 }
 
 .viewAllLink {
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: 0.67rem;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     color: var(--color-gold);
     font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
 }
+
+.viewAllLink:hover { opacity: 0.65; }
 
 .upsellGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 6rem;
-    max-width: 1400px;
-    margin: 0 auto;
+    gap: 5rem;
+}
+
+/* ═══ RESPONSIVE ═════════════════════════════════════════════════════════════*/
+
+@media (max-width: 1200px) {
+    .infoPanel { padding-left: 4rem; padding-right: 4rem; }
+    .scienceSection { padding: 8rem 5rem; gap: 6rem; }
+    .upsellSection { padding: 8rem 5rem; }
 }
 
 @media (max-width: 1024px) {
-    .grid {
+    .grid { grid-template-columns: 1fr; }
+
+    .imagePanel { position: relative; height: 70vh; }
+    .breadcrumbs { top: 1.5rem; left: 2rem; }
+
+    .infoPanel { padding: 4rem 2.5rem 6rem; }
+    .name { font-size: 2.8rem; }
+    .truth { font-size: 1.1rem; }
+
+    .scienceSection {
         grid-template-columns: 1fr;
-    }
-
-    .imageContainer {
-        height: 60vh;
-    }
-
-    .info {
-        padding: 4rem 2rem;
-    }
-
-    .name {
-        font-size: 3.5rem;
-    }
-
-    .upsellGrid {
-        grid-template-columns: 1fr;
+        padding: 6rem 2.5rem;
         gap: 4rem;
     }
+    .scienceLeft { position: static; }
+    .scienceHeading { font-size: 2.2rem; }
+    .scienceStat { grid-template-columns: 8rem 1fr; gap: 2rem; }
+    .scienceStatValue { font-size: 3rem; }
+
+    .upsellSection { padding: 6rem 2.5rem; }
+    .upsellGrid { grid-template-columns: 1fr; gap: 3rem; }
+    .upsellHeader { flex-direction: column; gap: 1.5rem; }
+
+    .trustRow { grid-template-columns: 1fr; }
+    .trustItem { border-right: none; border-bottom: 0.5px solid rgba(10, 26, 21, 0.1); }
+    .trustItem:last-child { border-bottom: none; }
 }

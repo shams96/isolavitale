@@ -11,13 +11,21 @@ import { getProductBySlug, getRelatedProducts } from '@/data/items';
 import type { Product } from '@/types/product';
 import { usePageSeo } from '@/hooks/usePageSeo';
 
+const COLLECTION_LABELS: Record<string, string> = {
+  laboratory: 'Laboratory Collection',
+  daily: 'Daily Collection',
+  chronos: 'Cellular Chronos',
+};
+
 export default function ProductPage() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug;
   const product = getProductBySlug(slug) as Product | undefined;
 
   usePageSeo({
-    title: product ? `${product.name} — ${product.collection === 'laboratory' ? 'Laboratory Collection' : product.collection === 'daily' ? 'Daily Collection' : 'Cellular Chronos'}` : 'Product Not Found',
+    title: product
+      ? `${product.name} — ${COLLECTION_LABELS[product.collection] ?? product.collection}`
+      : 'Product Not Found',
     description: product ? `${product.truth ?? ''} ${product.description ?? ''}`.slice(0, 155) : '',
     image: product?.imageSrc,
     type: 'product',
@@ -25,8 +33,8 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <main className={styles.main} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <h1>Product Not Found (404)</h1>
+      <main style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: 'var(--page-padding-top)' }}>
+        <h1 style={{ fontFamily: 'var(--font-serif)', fontWeight: 300 }}>Product Not Found</h1>
       </main>
     );
   }
@@ -54,109 +62,134 @@ export default function ProductPage() {
     name: p.name,
     technologies: p.technologies,
     imageSrc: p.imageSrc,
-    price: `$${p.fullPrice}`
+    price: `$${p.fullPrice}`,
   }));
+
+  const collectionLabel = product.collection === 'chronos'
+    ? `Cellular Chronos · Ages ${product.ageRange ?? ''}`
+    : COLLECTION_LABELS[product.collection] ?? product.collection;
 
   return (
     <main className={`${styles.main} env-white`}>
       <JsonLd data={productJsonLd} />
-      <div className={styles.breadcrumbs}>
-        <Link href="/">Home</Link> / <Link href="/products">Skin Care</Link> / <span>{product.name}</span>
-      </div>
 
+      {/* ── Main grid: sticky image + scrollable info ── */}
       <div className={styles.grid}>
-        <div className={`${styles.imageContainer} u-aspect-ratio-plinth`}>
+
+        {/* LEFT: sticky editorial image */}
+        <div className={styles.imagePanel}>
+          <div className={styles.breadcrumbs}>
+            <Link href="/">Home</Link>
+            <span className={styles.breadcrumbSep}>·</span>
+            <Link href="/products">Skin Care</Link>
+            <span className={styles.breadcrumbSep}>·</span>
+            <span>{product.name}</span>
+          </div>
           <img
             src={product.imageSrc}
             alt={product.name}
-            className="u-image-fit"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+            className={styles.productImage}
           />
+          <span className={styles.imageSideLabel}>Isola Vitale · Milano</span>
         </div>
 
-        <div className={styles.info}>
-          <div>
-            {product.collection && (
-              <span className={styles.subtitle}>
-                {product.collection === 'laboratory' && 'Laboratory Collection'}
-                {product.collection === 'daily' && 'Daily Collection'}
-                {product.collection === 'chronos' && `Cellular Chronos • Ages ${product.ageRange ?? ''}`}
-              </span>
+        {/* RIGHT: scrollable product info */}
+        <div className={styles.infoPanel}>
+
+          {/* Collection + step pill */}
+          <div className={styles.collectionRow}>
+            <span className={styles.subtitle}>{collectionLabel}</span>
+            {product.step && (
+              <span className={styles.stepPill}>{product.step}</span>
             )}
-            <h1 className={styles.name}>{product.name}</h1>
-            {product.technologies && (
-              <p className={styles.technologies}>{product.technologies}</p>
-            )}
-            <div className={styles.ratingSummary}>
-              <span className={styles.stars}>★★★★★</span>
-              <span className={styles.ratingText}>4.8 (142 Reviews)</span>
-            </div>
-            <p className={styles.truth}>{product.truth}</p>
           </div>
 
+          {/* Product name */}
+          <h1 className={styles.name}>{product.name}</h1>
+
+          {/* Technologies */}
+          {product.technologies && (
+            <p className={styles.technologies}>{product.technologies}</p>
+          )}
+
+          {/* Rating */}
+          <div className={styles.ratingSummary}>
+            <span className={styles.stars}>★★★★★</span>
+            <span className={styles.ratingText}>4.8 · 142 Reviews</span>
+          </div>
+
+          {/* Editorial truth statement */}
+          <p className={styles.truth}>{product.truth}</p>
+
+          {/* Purchase options */}
           <ProductActions
             product={product}
             fullPrice={product.fullPrice}
-            refillPrice={product.refillPrice}
+            refillPrice={product.refillPrice ?? product.fullPrice}
             subscriptionPrice={product.subscriptionPrice}
           />
+
+          {/* Trust row */}
+          <div className={styles.trustRow}>
+            <div className={styles.trustItem}>
+              <span className={styles.trustIcon}>✦</span>
+              <span className={styles.trustLabel}>Free Delivery</span>
+              <span className={styles.trustValue}>Orders over $200</span>
+            </div>
+            <div className={styles.trustItem}>
+              <span className={styles.trustIcon}>◇</span>
+              <span className={styles.trustLabel}>Refillable Vessel</span>
+              <span className={styles.trustValue}>Infinite reuse design</span>
+            </div>
+            <div className={styles.trustItem}>
+              <span className={styles.trustIcon}>◎</span>
+              <span className={styles.trustLabel}>Italian Craft</span>
+              <span className={styles.trustValue}>Formulated in Milano</span>
+            </div>
+          </div>
 
           <SocialShare
             title={`Isola Vitale — ${product.name}`}
             text={`Discover ${product.name}: ${product.truth}`}
           />
 
+          {/* Accordions */}
           <div className={styles.accordions}>
-            <Accordion title="What it Does" defaultOpen={true}>
+            <Accordion title="What It Does" defaultOpen={true}>
               <span>{product.description}</span>
               {product.benefits && product.benefits.length > 0 && (
-                <div style={{ marginTop: '1.5rem' }}>
-                  <strong style={{ display: 'block', marginBottom: '0.75rem' }}>Key Benefits:</strong>
-                  <ul style={{ paddingLeft: '1.25rem', lineHeight: '1.8' }}>
-                    {product.benefits.map((benefit: string, idx: number) => (
-                      <li key={idx}>{benefit}</li>
-                    ))}
-                  </ul>
-                </div>
+                <ul style={{ marginTop: '1.5rem', paddingLeft: '1.25rem', lineHeight: '1.9' }}>
+                  {product.benefits.map((benefit: string, idx: number) => (
+                    <li key={idx}>{benefit}</li>
+                  ))}
+                </ul>
               )}
             </Accordion>
 
             {product.keyIngredients && product.keyIngredients.length > 0 && (
               <Accordion title="Key Ingredients">
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   {product.keyIngredients.map((ingredient: any, idx: number) => (
-                    <div key={idx}>
-                      <strong>{ingredient.name}</strong>
-                      <p style={{ marginTop: '0.25rem', opacity: 0.8 }}>{ingredient.benefit}</p>
+                    <div key={idx} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', borderBottom: '0.5px solid rgba(10,26,21,0.07)', paddingBottom: '1.25rem' }}>
+                      <strong style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: '0.95rem', color: 'var(--color-emerald)' }}>{ingredient.name}</strong>
+                      <span style={{ opacity: 0.55, fontSize: '0.85rem', lineHeight: '1.6' }}>{ingredient.benefit}</span>
                     </div>
                   ))}
                 </div>
               </Accordion>
             )}
 
-            {product.clinicalResults && (
-              <Accordion title="Clinical Results">
-                <p style={{ marginBottom: '1rem' }}>
-                  <strong>Proven Results in {product.clinicalResults.duration}</strong>
-                </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  {product.clinicalResults.results.map((result: any, idx: number) => (
-                    <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span>{result.metric}</span>
-                      <strong style={{ color: 'var(--color-accent)' }}>{result.value}</strong>
-                    </div>
-                  ))}
-                </div>
+            {product.texture && (
+              <Accordion title="Sensory Profile">
+                <span>{product.texture}</span>
               </Accordion>
             )}
 
-            <Accordion title="Sensory Profile">
-              <span>{product.texture}</span>
-            </Accordion>
-
-            <Accordion title="How to Use">
-              <span>{product.usage}</span>
-            </Accordion>
+            {product.usage && (
+              <Accordion title="How to Use">
+                <span>{product.usage}</span>
+              </Accordion>
+            )}
 
             {product.whoItsFor && (
               <Accordion title="Who It's For">
@@ -165,29 +198,49 @@ export default function ProductPage() {
             )}
 
             <Accordion title="Common Questions">
-              <p><strong>Is this suitable for sensitive skin?</strong><br />Yes, the bio-adaptive formula is designed to reduce reactivity.</p>
-              <p style={{ marginTop: '1rem' }}><strong>How long does a bottle last?</strong><br />With daily use (morning and night), one vessel lasts approximately 6-8 weeks.</p>
+              <p><strong>Is this suitable for sensitive skin?</strong><br />Yes, the bio-adaptive formula is designed to reduce reactivity while delivering clinical-grade results.</p>
+              <p style={{ marginTop: '1.25rem' }}><strong>How long does a vessel last?</strong><br />With daily use morning and night, one vessel lasts approximately 6–8 weeks.</p>
               {product.subscriptionPrice && (
-                <p style={{ marginTop: '1rem' }}><strong>Can I subscribe and save?</strong><br />Yes! Subscribe and save 20% on every delivery. Cancel anytime after your first delivery.</p>
+                <p style={{ marginTop: '1.25rem' }}><strong>Can I subscribe and save?</strong><br />Yes — subscribe and save 20% on every delivery. Cancel anytime after your first order.</p>
               )}
             </Accordion>
           </div>
         </div>
       </div>
 
+      {/* ── Clinical Science Section ── */}
+      {product.clinicalResults && (
+        <section className={styles.scienceSection}>
+          <div className={styles.scienceLeft}>
+            <span className={styles.scienceLabel}>Proven Efficacy</span>
+            <h2 className={styles.scienceHeading}>The Science<br />Behind the Ritual</h2>
+            <p className={styles.scienceDuration}>
+              Results proven in {product.clinicalResults.duration}
+            </p>
+          </div>
+          <div className={styles.scienceResults}>
+            {product.clinicalResults.results.map((result: any, idx: number) => (
+              <div key={idx} className={styles.scienceStat}>
+                <span className={styles.scienceStatValue}>{result.value}</span>
+                <span className={styles.scienceStatMetric}>{result.metric}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       <VideoSection />
       <ReviewSection />
 
+      {/* ── Complete the Ritual ── */}
       <section className={styles.upsellSection}>
         <div className={styles.upsellHeader}>
-          <h2 className={styles.upsellTitle}>Experience more from this series</h2>
-          <Link href="/system" className={styles.viewAllLink}>Shop The System</Link>
+          <h2 className={styles.upsellTitle}>Complete the Ritual</h2>
+          <Link href="/system" className={styles.viewAllLink}>Shop The System →</Link>
         </div>
         <div className={styles.upsellGrid}>
           {upsells.map((item, idx) => (
-            <div key={idx} className={styles.upsellWrapper}>
-              <ProductCard product={item} />
-            </div>
+            <ProductCard key={idx} product={item} />
           ))}
         </div>
       </section>
