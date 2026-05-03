@@ -7,11 +7,12 @@ import ReviewSection from '@/components/ReviewSection';
 import ProductCard from '@/components/ProductCard';
 import SocialShare from '@/components/SocialShare';
 import { getProductBySlug, getRelatedProducts } from '@/data/items';
+import type { Product } from '@/types/product';
 
 export default function ProductPage() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug;
-  const product = getProductBySlug(slug);
+  const product = getProductBySlug(slug) as Product | undefined;
 
   if (!product) {
     return (
@@ -21,13 +22,13 @@ export default function ProductPage() {
     );
   }
 
-  const upsells = getRelatedProducts(slug).map(p => ({
+  const upsells = (getRelatedProducts(slug) as Product[]).map(p => ({
     ...p,
     id: p.id,
     slug: p.slug,
     name: p.name,
     technologies: p.technologies,
-    imageSrc: p.imageSrc || (p as any).image,
+    imageSrc: p.imageSrc,
     price: `$${p.fullPrice}`
   }));
 
@@ -40,7 +41,7 @@ export default function ProductPage() {
       <div className={styles.grid}>
         <div className={`${styles.imageContainer} u-aspect-ratio-plinth`}>
           <img
-            src={product.imageSrc || (product as any).image}
+            src={product.imageSrc}
             alt={product.name}
             className="u-image-fit"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
@@ -53,7 +54,7 @@ export default function ProductPage() {
               <span className={styles.subtitle}>
                 {product.collection === 'laboratory' && 'Laboratory Collection'}
                 {product.collection === 'daily' && 'Daily Collection'}
-                {product.collection === 'chronos' && `Cellular Chronos • Ages ${(product as any).ageRange}`}
+                {product.collection === 'chronos' && `Cellular Chronos • Ages ${product.ageRange ?? ''}`}
               </span>
             )}
             <h1 className={styles.name}>{product.name}</h1>
@@ -131,9 +132,9 @@ export default function ProductPage() {
               <span>{product.usage}</span>
             </Accordion>
 
-            {(product as any).whoItsFor && (
+            {product.whoItsFor && (
               <Accordion title="Who It's For">
-                <span>{(product as any).whoItsFor}</span>
+                <span>{product.whoItsFor}</span>
               </Accordion>
             )}
 

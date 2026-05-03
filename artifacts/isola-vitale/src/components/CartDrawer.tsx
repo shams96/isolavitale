@@ -154,7 +154,7 @@ export default function CartDrawer() {
             </div>
             <div className={styles.upsellItem}>
               <div className={styles.upsellImage}>
-                <img src={upsellItem.imageSrc || (upsellItem as any).image} alt={upsellItem.name} />
+                <img src={upsellItem.imageSrc} alt={upsellItem.name} />
               </div>
               <div className={styles.upsellInfo}>
                 <span className={styles.upsellLabel}>
