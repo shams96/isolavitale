@@ -1,6 +1,14 @@
 import type { Request, Response, NextFunction } from "express";
+import { isValidSession } from "../lib/cmsTokenStore.js";
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "isola2026";
+if (!process.env.ADMIN_PASSWORD) {
+  if (process.env.NODE_ENV === "production") {
+    console.error("FATAL: ADMIN_PASSWORD environment variable is required in production.");
+    process.exit(1);
+  } else {
+    console.warn("WARNING: ADMIN_PASSWORD is not set. Set it before deploying to production.");
+  }
+}
 
 export function requireCmsAuth(req: Request, res: Response, next: NextFunction) {
   const auth = req.headers.authorization;
@@ -9,7 +17,7 @@ export function requireCmsAuth(req: Request, res: Response, next: NextFunction) 
     return;
   }
   const token = auth.slice(7);
-  if (token !== ADMIN_PASSWORD) {
+  if (!isValidSession(token)) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }

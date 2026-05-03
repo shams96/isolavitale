@@ -9,6 +9,7 @@ import {
 } from "@workspace/db/schema";
 import { eq } from "drizzle-orm";
 import { requireCmsAuth } from "../middleware/cmsAuth.js";
+import { createSession } from "../lib/cmsTokenStore.js";
 
 const router = Router();
 
@@ -16,9 +17,14 @@ const router = Router();
 
 router.post("/cms/auth", (req, res) => {
   const { password } = req.body as { password?: string };
-  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "isola2026";
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+  if (!ADMIN_PASSWORD) {
+    res.status(503).json({ error: "Admin authentication is not configured on this server." });
+    return;
+  }
   if (typeof password === "string" && password === ADMIN_PASSWORD) {
-    res.json({ ok: true, token: ADMIN_PASSWORD });
+    const token = createSession();
+    res.json({ ok: true, token });
   } else {
     res.status(401).json({ error: "Invalid password" });
   }
