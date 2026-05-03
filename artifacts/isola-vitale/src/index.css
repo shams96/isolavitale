@@ -22,8 +22,8 @@
   --heading-size-section: 4.5rem;
   --heading-size-item: 2.8rem;
   --heading-size-card: 1.4rem;
-  --page-padding-top: 180px;
-  --page-padding-top-mobile: 140px;
+  --page-padding-top: 210px;
+  --page-padding-top-mobile: 160px;
   --letter-spacing-couture: 0.3em;
   --letter-spacing-label: 0.4em;
   --text-size-body: 1.1rem;
@@ -31,7 +31,9 @@
   --text-opacity-muted: 0.5;
   --border-ultra: 0.5px solid rgba(197, 160, 89, 0.2);
   --border-standard: 0.5px solid rgba(255, 255, 255, 0.1);
+  --border-light: 0.5px solid rgba(10, 26, 21, 0.1);
   --transition-luxury: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-standard: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   --app-font-sans: 'Work Sans', system-ui, sans-serif;

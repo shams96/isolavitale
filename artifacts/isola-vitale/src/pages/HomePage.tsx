@@ -4,8 +4,15 @@ import ProductShowcase from "@/components/ProductShowcase";
 import SensorySection from "@/components/SensorySection";
 import EditorialSection from "@/components/EditorialSection";
 import FadeIn from "@/components/FadeIn";
+import { usePageSeo } from "@/hooks/usePageSeo";
 
 export default function HomePage() {
+  usePageSeo({
+    title: 'Italian Luxury Skincare',
+    description: 'Where Italian craftsmanship meets cellular science. Clinical-grade skincare engineered in Milano — OS-01 Senomorphic, GLP-1 Protection, refillable luxury vessels.',
+    type: 'website',
+  });
+
   return (
     <main>
       <Hero

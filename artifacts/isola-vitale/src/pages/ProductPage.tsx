@@ -6,13 +6,22 @@ import VideoSection from '@/components/VideoSection';
 import ReviewSection from '@/components/ReviewSection';
 import ProductCard from '@/components/ProductCard';
 import SocialShare from '@/components/SocialShare';
+import JsonLd from '@/components/JsonLd';
 import { getProductBySlug, getRelatedProducts } from '@/data/items';
 import type { Product } from '@/types/product';
+import { usePageSeo } from '@/hooks/usePageSeo';
 
 export default function ProductPage() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug;
   const product = getProductBySlug(slug) as Product | undefined;
+
+  usePageSeo({
+    title: product ? `${product.name} — ${product.collection === 'laboratory' ? 'Laboratory Collection' : product.collection === 'daily' ? 'Daily Collection' : 'Cellular Chronos'}` : 'Product Not Found',
+    description: product ? `${product.truth ?? ''} ${product.description ?? ''}`.slice(0, 155) : '',
+    image: product?.imageSrc,
+    type: 'product',
+  });
 
   if (!product) {
     return (
@@ -21,6 +30,22 @@ export default function ProductPage() {
       </main>
     );
   }
+
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description ?? product.truth,
+    image: product.imageSrc,
+    brand: { '@type': 'Brand', name: 'Isola Vitale' },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'USD',
+      price: product.fullPrice,
+      availability: 'https://schema.org/InStock',
+      url: `https://isolavitale.com/products/${product.slug}`,
+    },
+  };
 
   const upsells = (getRelatedProducts(slug) as Product[]).map(p => ({
     ...p,
@@ -34,6 +59,7 @@ export default function ProductPage() {
 
   return (
     <main className={`${styles.main} env-white`}>
+      <JsonLd data={productJsonLd} />
       <div className={styles.breadcrumbs}>
         <Link href="/">Home</Link> / <Link href="/products">Skin Care</Link> / <span>{product.name}</span>
       </div>

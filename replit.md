@@ -87,15 +87,29 @@ pnpm workspace monorepo using TypeScript. Contains two main artifacts: the Isola
 - Presigned URL flow: request URL from API → PUT file directly to GCS
 
 ## Admin Panel (`/admin`)
-- Password-protected CMS at `/admin` (password: `isola2026`)
+- Password-protected CMS at `/admin` — password via `ADMIN_PASSWORD` Replit secret
 - **Products tab**: Create/edit/delete products, set prices, upload images, toggle active state, import from static catalog
 - **Journal tab**: Create/edit/delete articles with body (HTML supported), publish/unpublish
-- **Hero Sections tab**: Edit headline, copy, CTA, image URL, and video URL for each page (home, products, journal, origin, system, technology)
+- **Hero Sections tab**: Edit headline, copy, CTA, image URL, and video URL for each page
 - **Media Library tab**: Upload images/videos directly to Replit object storage, copy URLs, manage all media assets
 - **Settings tab**: Global site configuration (announcement banner, free shipping threshold, subscription discount, footer tagline, contact email, Instagram URL)
 
+## Frontend Architecture
+- `src/types/product.ts` — canonical `Product` interface (shared across components/pages)
+- `src/hooks/usePageSeo.ts` — updates document.title and all meta/OG/Twitter tags per page
+- `src/components/Header.tsx` — self-contains announcement bar; auto-detects dark vs. light pages via `useLocation`; compact scrolled state
+- `src/components/Accordion.tsx` — uses `.item/.header/.title/.icon/.content/.inner` CSS module classes with grid-template-rows animation
+- CSS variables: `--border-light` (dark borders for white pages), `--border-standard` (white borders for dark pages), `--transition-standard`
+
+## SEO
+- `index.html`: full base meta tags (description, OG, Twitter card, author, robots)
+- Per-page: `usePageSeo` hook in HomePage, ProductsPage, ProductPage
+- `src/components/JsonLd.tsx`: Product schema JSON-LD rendered on each product page
+- Structured data: `@type: Product` with name, description, image, brand, offer price, availability
+
 ## Environment Variables Required
 - `DATABASE_URL` — PostgreSQL connection string (set by Replit)
+- `ADMIN_PASSWORD` — CMS admin password (set as a Replit **secret**, not env var)
 - `DEFAULT_OBJECT_STORAGE_BUCKET_ID` — GCS bucket ID (set by object storage setup)
 - `PUBLIC_OBJECT_SEARCH_PATHS` — Object storage public paths (set automatically)
 - `PRIVATE_OBJECT_DIR` — Object storage private dir (set automatically)

@@ -1,18 +1,26 @@
 import { Link } from 'wouter';
 import styles from './ProductCard.module.css';
+import type { Product } from '@/types/product';
 
 interface ProductCardProps {
-  product: any;
+  product: Product & { price?: string };
   noLink?: boolean;
 }
 
 export default function ProductCard({ product, noLink = false }: ProductCardProps) {
+  const displayPrice = product.fullPrice ? `$${product.fullPrice}` : (product.price ?? '');
+  const collectionLabel =
+    product.collection === 'laboratory' ? 'Laboratory Collection' :
+    product.collection === 'daily' ? 'Daily Collection' :
+    product.collection === 'chronos' ? 'Cellular Chronos' :
+    `${product.collection} Collection`;
+
   const cardContent = (
     <>
       <div className="u-aspect-ratio-plinth">
-        {(product.imageSrc || product.image) && (
+        {product.imageSrc && (
           <img
-            src={product.imageSrc || product.image}
+            src={product.imageSrc}
             alt={product.name}
             className="u-image-fit"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
@@ -22,17 +30,19 @@ export default function ProductCard({ product, noLink = false }: ProductCardProp
 
       <div className={styles.info}>
         <div className={styles.header}>
-          <span className={styles.collection}>{product.collection} Collection</span>
+          <span className={styles.collection}>{collectionLabel}</span>
           <h3 className={styles.name}>{product.name}</h3>
         </div>
 
-        <span className={styles.tech}>
-          {product.technologies ? product.technologies.split(' + ')[0] : 'Advanced Tech'} +
-        </span>
+        {product.technologies && (
+          <span className={styles.tech}>
+            {product.technologies.split(' + ')[0]} +
+          </span>
+        )}
 
         <div className={styles.meta}>
           <span className={styles.context}>Refillable System</span>
-          <span className={styles.price}>${product.fullPrice || product.price}</span>
+          <span className={styles.price}>{displayPrice}</span>
         </div>
       </div>
     </>

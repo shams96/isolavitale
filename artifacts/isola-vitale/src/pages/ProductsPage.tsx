@@ -2,8 +2,17 @@ import ProductCard from '@/components/ProductCard';
 import { PRODUCTS } from '@/data/items';
 import FadeIn from '@/components/FadeIn';
 import styles from '@/app/products/page.module.css';
+import { usePageSeo } from '@/hooks/usePageSeo';
+import type { Product } from '@/types/product';
+
+const typedProducts = PRODUCTS as unknown as Product[];
 
 export default function ProductsPage() {
+  usePageSeo({
+    title: 'Shop All Skincare',
+    description: 'Explore all three Isola Vitale collections — Laboratory, Daily, and Cellular Chronos. Clinically engineered Italian skincare in refillable luxury vessels.',
+  });
+
   return (
     <main className={`${styles.main} env-white`}>
       <div className={styles.container}>
@@ -19,7 +28,7 @@ export default function ProductsPage() {
         </header>
 
         <div className="u-product-grid">
-          {PRODUCTS.map(product => (
+          {typedProducts.map(product => (
             <ProductCard
               key={product.id}
               product={product}

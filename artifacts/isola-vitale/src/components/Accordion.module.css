@@ -1,5 +1,5 @@
 .item {
-    border-bottom: var(--border-standard);
+    border-bottom: var(--border-light);
 }
 
 .header {
