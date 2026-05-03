@@ -21,7 +21,19 @@ const checkoutBodySchema = z.object({
 });
 
 // Trusted base URL for Stripe redirect targets — never from client headers.
-const FRONTEND_BASE = (process.env.FRONTEND_URL ?? "").replace(/\/$/, "");
+// Resolution order:
+//   1. FRONTEND_URL env var (production deployment)
+//   2. REPLIT_DEV_DOMAIN env var (Replit preview environment)
+//   3. Absent → checkout is refused with 503 so redirects are never wrong
+function resolveFrontendBase(): string {
+  if (process.env.FRONTEND_URL) {
+    return process.env.FRONTEND_URL.replace(/\/$/, "");
+  }
+  if (process.env.REPLIT_DEV_DOMAIN) {
+    return `https://${process.env.REPLIT_DEV_DOMAIN}`;
+  }
+  return "";
+}
 
 router.post("/checkout", async (req, res) => {
   const stripeKey = process.env["STRIPE_SECRET_KEY"];
@@ -56,7 +68,12 @@ router.post("/checkout", async (req, res) => {
     const Stripe = (await import("stripe")).default;
     const stripe = new Stripe(stripeKey);
 
-    const baseUrl = FRONTEND_BASE || "https://isolavitale.com";
+    const baseUrl = resolveFrontendBase();
+    if (!baseUrl) {
+      logger.error("FRONTEND_URL and REPLIT_DEV_DOMAIN are both unset — cannot produce safe redirect URLs");
+      res.status(503).json({ error: "Checkout redirect URL is not configured. Set FRONTEND_URL." });
+      return;
+    }
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
