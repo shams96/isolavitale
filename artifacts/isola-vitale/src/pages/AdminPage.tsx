@@ -1,25 +1,62 @@
 import { useState, useEffect, useRef } from 'react';
 
 const API = '/api';
-const ADMIN_PASSWORD = 'isola2026';
+const TOKEN_KEY = 'cms_token';
+
+function getToken(): string | null {
+  return sessionStorage.getItem(TOKEN_KEY);
+}
+
+function cmsHeaders(extra?: Record<string, string>): Record<string, string> {
+  return { 'Content-Type': 'application/json', Authorization: `Bearer ${getToken() ?? ''}`, ...extra };
+}
 
 type Tab = 'products' | 'journal' | 'hero' | 'media' | 'settings';
 
-function useLocalAuth() {
-  const [authed, setAuthed] = useState(() => sessionStorage.getItem('cms_auth') === 'ok');
-  const login = (pw: string) => {
-    if (pw === ADMIN_PASSWORD) { sessionStorage.setItem('cms_auth', 'ok'); setAuthed(true); return true; }
-    return false;
+function useApiAuth() {
+  const [authed, setAuthed] = useState(() => !!sessionStorage.getItem(TOKEN_KEY));
+  const [loading, setLoading] = useState(false);
+
+  const login = async (pw: string): Promise<string | null> => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API}/cms/auth`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pw }),
+      });
+      if (res.ok) {
+        const { token } = await res.json();
+        sessionStorage.setItem(TOKEN_KEY, token);
+        setAuthed(true);
+        return null;
+      }
+      return 'Incorrect password';
+    } catch {
+      return 'Connection error — is the server running?';
+    } finally {
+      setLoading(false);
+    }
   };
-  const logout = () => { sessionStorage.removeItem('cms_auth'); setAuthed(false); };
-  return { authed, login, logout };
+
+  const logout = () => {
+    sessionStorage.removeItem(TOKEN_KEY);
+    setAuthed(false);
+  };
+
+  return { authed, loading, login, logout };
 }
 
 export default function AdminPage() {
-  const { authed, login, logout } = useLocalAuth();
+  const { authed, loading, login, logout } = useApiAuth();
   const [tab, setTab] = useState<Tab>('products');
   const [pw, setPw] = useState('');
   const [loginErr, setLoginErr] = useState('');
+
+  const handleLogin = async () => {
+    const err = await login(pw);
+    if (err) setLoginErr(err);
+  };
 
   if (!authed) {
     return (
@@ -33,11 +70,11 @@ export default function AdminPage() {
             placeholder="Enter admin password"
             value={pw}
             onChange={e => setPw(e.target.value)}
-            onKeyDown={e => { if (e.key === 'Enter') { if (!login(pw)) setLoginErr('Incorrect password'); } }}
+            onKeyDown={e => { if (e.key === 'Enter') handleLogin(); }}
           />
           {loginErr && <p style={{ color: '#c00', fontSize: 13, marginTop: 8 }}>{loginErr}</p>}
-          <button style={S.btn} onClick={() => { if (!login(pw)) setLoginErr('Incorrect password'); }}>
-            Sign In
+          <button style={S.btn} onClick={handleLogin} disabled={loading}>
+            {loading ? 'Verifying…' : 'Sign In'}
           </button>
         </div>
       </div>
@@ -89,14 +126,15 @@ function ProductsPanel() {
   const [msg, setMsg] = useState('');
 
   useEffect(() => {
-    fetch(`${API}/cms/products`).then(r => r.json()).then(d => { setProducts(d); setLoading(false); });
+    fetch(`${API}/cms/products`, { headers: cmsHeaders() })
+      .then(r => r.json()).then(d => { setProducts(d); setLoading(false); });
   }, []);
 
   const save = async () => {
     setSaving(true);
     const method = editing.id ? 'PUT' : 'POST';
     const url = editing.id ? `${API}/cms/products/${editing.id}` : `${API}/cms/products`;
-    const res = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(editing) });
+    const res = await fetch(url, { method, headers: cmsHeaders(), body: JSON.stringify(editing) });
     const data = await res.json();
     if (editing.id) {
       setProducts(prev => prev.map(p => p.id === data.id ? data : p));
@@ -111,7 +149,7 @@ function ProductsPanel() {
 
   const del = async (id: number) => {
     if (!confirm('Delete this product?')) return;
-    await fetch(`${API}/cms/products/${id}`, { method: 'DELETE' });
+    await fetch(`${API}/cms/products/${id}`, { method: 'DELETE', headers: cmsHeaders() });
     setProducts(prev => prev.filter(p => p.id !== id));
   };
 
@@ -256,14 +294,15 @@ function JournalPanel() {
   const [msg, setMsg] = useState('');
 
   useEffect(() => {
-    fetch(`${API}/cms/journal`).then(r => r.json()).then(d => { setPosts(d); setLoading(false); });
+    fetch(`${API}/cms/journal`, { headers: cmsHeaders() })
+      .then(r => r.json()).then(d => { setPosts(d); setLoading(false); });
   }, []);
 
   const save = async () => {
     setSaving(true);
     const method = editing.id ? 'PUT' : 'POST';
     const url = editing.id ? `${API}/cms/journal/${editing.id}` : `${API}/cms/journal`;
-    const res = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(editing) });
+    const res = await fetch(url, { method, headers: cmsHeaders(), body: JSON.stringify(editing) });
     const data = await res.json();
     if (editing.id) {
       setPosts(prev => prev.map(p => p.id === data.id ? data : p));
@@ -278,7 +317,7 @@ function JournalPanel() {
 
   const del = async (id: number) => {
     if (!confirm('Delete this post?')) return;
-    await fetch(`${API}/cms/journal/${id}`, { method: 'DELETE' });
+    await fetch(`${API}/cms/journal/${id}`, { method: 'DELETE', headers: cmsHeaders() });
     setPosts(prev => prev.filter(p => p.id !== id));
   };
 
@@ -378,7 +417,7 @@ function HeroPanel() {
   const [msg, setMsg] = useState('');
 
   useEffect(() => {
-    fetch(`${API}/cms/hero`).then(r => r.json()).then((data: any[]) => {
+    fetch(`${API}/cms/hero`, { headers: cmsHeaders() }).then(r => r.json()).then((data: any[]) => {
       const m: Record<string, any> = {};
       data.forEach(s => { m[s.page] = s; });
       setSections(m);
@@ -393,7 +432,7 @@ function HeroPanel() {
     setSaving(true);
     const res = await fetch(`${API}/cms/hero/${editing}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: cmsHeaders(),
       body: JSON.stringify(current)
     });
     const data = await res.json();
@@ -490,7 +529,8 @@ function MediaPanel() {
   const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    fetch(`${API}/cms/media`).then(r => r.json()).then(d => { setAssets(d); setLoading(false); });
+    fetch(`${API}/cms/media`, { headers: cmsHeaders() })
+      .then(r => r.json()).then(d => { setAssets(d); setLoading(false); });
   }, []);
 
   const upload = async (file: File) => {
@@ -498,14 +538,14 @@ function MediaPanel() {
     try {
       const urlRes = await fetch(`${API}/storage/uploads/request-url`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: cmsHeaders(),
         body: JSON.stringify({ name: file.name, size: file.size, contentType: file.type })
       });
       const { uploadURL, objectPath } = await urlRes.json();
       await fetch(uploadURL, { method: 'PUT', body: file, headers: { 'Content-Type': file.type } });
       const regRes = await fetch(`${API}/cms/media`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: cmsHeaders(),
         body: JSON.stringify({ filename: file.name, objectPath, mimeType: file.type, sizeBytes: file.size })
       });
       const asset = await regRes.json();
@@ -520,7 +560,7 @@ function MediaPanel() {
 
   const del = async (id: number) => {
     if (!confirm('Remove this asset from the library?')) return;
-    await fetch(`${API}/cms/media/${id}`, { method: 'DELETE' });
+    await fetch(`${API}/cms/media/${id}`, { method: 'DELETE', headers: cmsHeaders() });
     setAssets(prev => prev.filter(a => a.id !== id));
   };
 
@@ -635,7 +675,7 @@ function SettingsPanel() {
   const [msg, setMsg] = useState('');
 
   useEffect(() => {
-    fetch(`${API}/cms/settings`).then(r => r.json()).then((data: any[]) => {
+    fetch(`${API}/cms/settings`, { headers: cmsHeaders() }).then(r => r.json()).then((data: any[]) => {
       const m: Record<string, string> = {};
       data.forEach(s => { m[s.key] = s.value; });
       defaultSettings.forEach(d => { if (!m[d.key]) m[d.key] = d.value; });
@@ -650,7 +690,7 @@ function SettingsPanel() {
       Object.entries(settings).map(([key, value]) =>
         fetch(`${API}/cms/settings/${key}`, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          headers: cmsHeaders(),
           body: JSON.stringify({ value, label: defaultSettings.find(d => d.key === key)?.label })
         })
       )
@@ -725,14 +765,14 @@ function ImageUrlField({ value, onChange }: { value: string; onChange: (v: strin
     try {
       const urlRes = await fetch(`${API}/storage/uploads/request-url`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: cmsHeaders(),
         body: JSON.stringify({ name: file.name, size: file.size, contentType: file.type })
       });
       const { uploadURL, objectPath } = await urlRes.json();
       await fetch(uploadURL, { method: 'PUT', body: file, headers: { 'Content-Type': file.type } });
       await fetch(`${API}/cms/media`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: cmsHeaders(),
         body: JSON.stringify({ filename: file.name, objectPath, mimeType: file.type, sizeBytes: file.size })
       });
       onChange(`/api/storage${objectPath}`);
@@ -768,7 +808,7 @@ function VideoUploadBtn({ onUploaded }: { onUploaded: (url: string) => void }) {
     try {
       const urlRes = await fetch(`${API}/storage/uploads/request-url`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: cmsHeaders(),
         body: JSON.stringify({ name: file.name, size: file.size, contentType: file.type })
       });
       const { uploadURL, objectPath } = await urlRes.json();
@@ -777,7 +817,7 @@ function VideoUploadBtn({ onUploaded }: { onUploaded: (url: string) => void }) {
       setProgress(80);
       await fetch(`${API}/cms/media`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: cmsHeaders(),
         body: JSON.stringify({ filename: file.name, objectPath, mimeType: file.type, sizeBytes: file.size })
       });
       setProgress(100);
@@ -808,7 +848,7 @@ function SeedProductsBtn({ onSeeded }: { onSeeded: (p: any[]) => void }) {
     for (const p of PRODUCTS.slice(0, 12)) {
       await fetch(`${API}/cms/products`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: cmsHeaders(),
         body: JSON.stringify({
           slug: p.slug, name: p.name, collection: p.collection || 'laboratory',
           technologies: p.technologies, step: p.step, description: p.description,
@@ -820,7 +860,7 @@ function SeedProductsBtn({ onSeeded }: { onSeeded: (p: any[]) => void }) {
         })
       });
     }
-    const res = await fetch(`${API}/cms/products`);
+    const res = await fetch(`${API}/cms/products`, { headers: cmsHeaders() });
     const data = await res.json();
     onSeeded(data);
     setSeeding(false);
@@ -834,9 +874,7 @@ function SeedProductsBtn({ onSeeded }: { onSeeded: (p: any[]) => void }) {
 }
 
 function Toast({ msg }: { msg: string }) {
-  return (
-    <div style={S.toast}>{msg}</div>
-  );
+  return <div style={S.toast}>{msg}</div>;
 }
 
 function Spinner() {

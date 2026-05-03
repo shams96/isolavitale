@@ -5,12 +5,27 @@ import {
   journalPostsTable, insertJournalPostSchema,
   heroSectionsTable, insertHeroSectionSchema,
   mediaAssetsTable, insertMediaAssetSchema,
-  siteSettingsTable, insertSiteSettingSchema,
+  siteSettingsTable,
 } from "@workspace/db/schema";
 import { eq } from "drizzle-orm";
-// zod is available via @workspace/api-zod's peer dep
+import { requireCmsAuth } from "../middleware/cmsAuth.js";
 
 const router = Router();
+
+// ── Auth (public — no middleware) ────────────────────────────────────────────
+
+router.post("/cms/auth", (req, res) => {
+  const { password } = req.body as { password?: string };
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "isola2026";
+  if (typeof password === "string" && password === ADMIN_PASSWORD) {
+    res.json({ ok: true, token: ADMIN_PASSWORD });
+  } else {
+    res.status(401).json({ error: "Invalid password" });
+  }
+});
+
+// All routes below this line require a valid CMS token
+router.use(requireCmsAuth);
 
 // ── Products ─────────────────────────────────────────────────────────────────
 
@@ -42,7 +57,7 @@ router.put("/cms/products/:id", async (req, res) => {
       .set({ ...parsed, updatedAt: new Date() })
       .where(eq(productsTable.id, id))
       .returning();
-    if (!product) return res.status(404).json({ error: "Not found" });
+    if (!product) { res.status(404).json({ error: "Not found" }); return; }
     res.json(product);
   } catch (e: any) {
     res.status(400).json({ error: e.message });
@@ -89,7 +104,7 @@ router.put("/cms/journal/:id", async (req, res) => {
       .set({ ...parsed, updatedAt: new Date() })
       .where(eq(journalPostsTable.id, id))
       .returning();
-    if (!post) return res.status(404).json({ error: "Not found" });
+    if (!post) { res.status(404).json({ error: "Not found" }); return; }
     res.json(post);
   } catch (e: any) {
     res.status(400).json({ error: e.message });
@@ -122,7 +137,6 @@ router.put("/cms/hero/:page", async (req, res) => {
     const page = req.params.page;
     const parsed = insertHeroSectionSchema.partial().parse(req.body);
     const existing = await db.select().from(heroSectionsTable).where(eq(heroSectionsTable.page, page));
-
     let section;
     if (existing.length > 0) {
       [section] = await db
@@ -173,7 +187,7 @@ router.delete("/cms/media/:id", async (req, res) => {
   }
 });
 
-// ── Site Settings ─────────────────────────────────────────────────────────
+// ── Site Settings ─────────────────────────────────────────────────────────────
 
 router.get("/cms/settings", async (req, res) => {
   try {
@@ -189,7 +203,6 @@ router.put("/cms/settings/:key", async (req, res) => {
     const key = req.params.key;
     const { value, label } = req.body as { value: string; label?: string };
     const existing = await db.select().from(siteSettingsTable).where(eq(siteSettingsTable.key, key));
-
     let setting;
     if (existing.length > 0) {
       [setting] = await db
@@ -209,7 +222,7 @@ router.put("/cms/settings/:key", async (req, res) => {
   }
 });
 
-// ── Upload presigned URL (delegate to object storage) ────────────────────────
+// ── Upload presigned URL ───────────────────────────────────────────────────────
 
 router.post("/cms/upload-url", async (req, res) => {
   try {
