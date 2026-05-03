@@ -48,7 +48,7 @@
 
 /* === Main nav row === */
 .nav {
-    padding: 1.8rem 6rem;
+    padding: 1.1rem 6rem;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
@@ -117,7 +117,7 @@
 
 .logoMain {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: 300;
     letter-spacing: -0.01em;
     line-height: 1;

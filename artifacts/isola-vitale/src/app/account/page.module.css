@@ -1,6 +1,6 @@
 .container {
     min-height: 100vh;
-    padding-top: 180px;
+    padding-top: var(--page-padding-top);
     padding-bottom: 15rem;
     background-color: var(--color-emerald);
     color: var(--color-white);
