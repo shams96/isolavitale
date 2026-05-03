@@ -10,13 +10,11 @@
     letter-spacing: 0.1em;
     font-size: 0.8rem;
     font-weight: 500;
-    /* Medium weight for premium feel */
     border: 1px solid transparent;
     transition: transform 0.1s ease-out, background-color 0.3s ease, color 0.3s ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    /* 2025 Trend: Soft rounded corners or pill shape */
     border-radius: 4px;
 }
 
