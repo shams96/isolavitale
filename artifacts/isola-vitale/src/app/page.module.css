@@ -1,0 +1,21 @@
+.page {
+  background-color: var(--color-white);
+  color: var(--color-midnight);
+  min-height: 100vh;
+}
+
+.main {
+  width: 100%;
+}
+
+/* Home page usually just stacks sections, but we add a root container for any unique elements */
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding-top: 0;
+  }
+}

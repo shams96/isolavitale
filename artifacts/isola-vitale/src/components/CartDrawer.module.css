@@ -1,0 +1,406 @@
+/* Cart Drawer - Premium Polish */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 998;
+    transition: opacity 0.4s ease;
+}
+
+.drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 500px;
+    height: 100vh;
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(20px);
+    color: var(--color-ivory);
+    z-index: 999;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.open {
+    transform: translateX(0);
+}
+
+.header {
+    padding: 2rem 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+
+.close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    color: var(--color-ivory);
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.close:hover {
+    opacity: 1;
+}
+
+.shippingBar {
+    padding: 1.5rem 2.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.shippingText {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.shippingText span {
+    color: var(--color-accent);
+}
+
+.progressBar {
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background-color: var(--color-ivory);
+    box-shadow: 0 0 10px rgba(244, 243, 239, 0.5);
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* Scrollbar refinement */
+.items::-webkit-scrollbar {
+    width: 4px;
+}
+
+.items::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.items::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.item {
+    display: flex;
+    gap: 2rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.imageContainer {
+    position: relative;
+    width: 90px;
+    height: 110px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.image {
+    object-fit: contain;
+    padding: 10px;
+}
+
+.details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.itemName {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    max-width: 180px;
+    line-height: 1.3;
+}
+
+.itemPrice {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.variant {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--color-accent);
+    margin-top: -0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    /* Rounded pill shape */
+    padding: 0 0.2rem;
+}
+
+.quantity button {
+    background: none;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    color: var(--color-ivory);
+    opacity: 0.6;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+}
+
+.quantity button:hover {
+    opacity: 1;
+}
+
+.quantity span {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    padding: 0 0.5rem;
+    min-width: 20px;
+    text-align: center;
+}
+
+.remove {
+    background: none;
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    opacity: 0.4;
+    color: var(--color-ivory);
+    transition: opacity 0.3s;
+}
+
+.remove:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.upsells {
+    padding: 2rem 2.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.upsellTitle {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+    text-align: center;
+}
+
+.upsellList {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.upsellItem {
+    min-width: 240px;
+    /* Wider card */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    background: rgba(10, 10, 10, 0.5);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.upsellImage {
+    position: relative;
+    width: 60px;
+    height: 70px;
+    flex-shrink: 0;
+}
+
+.upsellInfo {
+    text-align: left;
+    flex: 1;
+}
+
+.upsellName {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.upsellPrice {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+.upsellAdd {
+    width: auto;
+    padding: 0.3rem 0.8rem;
+    background: transparent;
+    border: 1px solid var(--color-ivory);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    float: right;
+}
+
+.upsellAdd:hover {
+    background: var(--color-ivory);
+    color: var(--color-obsidian);
+}
+
+.footer {
+    padding: 2.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(10, 10, 10, 0.6);
+}
+
+.subtotal {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.checkoutBtn {
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: var(--color-ivory);
+    color: var(--color-obsidian);
+    text-align: center;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+}
+
+.checkoutBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.disclaimer {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    text-align: center;
+    opacity: 0.4;
+    margin-top: 1.5rem;
+
+    .disclaimer {
+        font-size: 0.6rem;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .drawer {
+        width: 100%;
+        max-width: none;
+    }
+
+    .header {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .items {
+        padding: 1.5rem;
+    }
+
+    .upsellList {
+        padding-bottom: 1rem;
+    }
+
+    .footer {
+        padding: 1.5rem;
+    }
+
+    .subtotal {
+        font-size: 1.2rem;
+    }
+}

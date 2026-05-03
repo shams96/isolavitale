@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Isola Vitale"
+version = "1.0.0"
+id = "artifacts/isola-vitale"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21041
+
+[services.development]
+run = "pnpm --filter @workspace/isola-vitale run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/isola-vitale", "run", "build" ]
+publicDir = "artifacts/isola-vitale/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21041"
+BASE_PATH = "/"

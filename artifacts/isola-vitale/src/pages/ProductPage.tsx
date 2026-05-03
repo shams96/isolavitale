@@ -1,0 +1,169 @@
+import styles from '@/app/products/[slug]/page.module.css';
+import { Link, useParams } from 'wouter';
+import ProductActions from '@/components/ProductActions';
+import Accordion from '@/components/Accordion';
+import VideoSection from '@/components/VideoSection';
+import ReviewSection from '@/components/ReviewSection';
+import ProductCard from '@/components/ProductCard';
+import SocialShare from '@/components/SocialShare';
+import { getProductBySlug, getRelatedProducts } from '@/data/items';
+
+export default function ProductPage() {
+  const params = useParams<{ slug: string }>();
+  const slug = params.slug;
+  const product = getProductBySlug(slug);
+
+  if (!product) {
+    return (
+      <main className={styles.main} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <h1>Product Not Found (404)</h1>
+      </main>
+    );
+  }
+
+  const upsells = getRelatedProducts(slug).map(p => ({
+    ...p,
+    id: p.id,
+    slug: p.slug,
+    name: p.name,
+    technologies: p.technologies,
+    imageSrc: p.imageSrc || (p as any).image,
+    price: `$${p.fullPrice}`
+  }));
+
+  return (
+    <main className={`${styles.main} env-white`}>
+      <div className={styles.breadcrumbs}>
+        <Link href="/">Home</Link> / <Link href="/products">Skin Care</Link> / <span>{product.name}</span>
+      </div>
+
+      <div className={styles.grid}>
+        <div className={`${styles.imageContainer} u-aspect-ratio-plinth`}>
+          <img
+            src={product.imageSrc || (product as any).image}
+            alt={product.name}
+            className="u-image-fit"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+          />
+        </div>
+
+        <div className={styles.info}>
+          <div>
+            {product.collection && (
+              <span className={styles.subtitle}>
+                {product.collection === 'laboratory' && 'Laboratory Collection'}
+                {product.collection === 'daily' && 'Daily Collection'}
+                {product.collection === 'chronos' && `Cellular Chronos • Ages ${(product as any).ageRange}`}
+              </span>
+            )}
+            <h1 className={styles.name}>{product.name}</h1>
+            {product.technologies && (
+              <p className={styles.technologies}>{product.technologies}</p>
+            )}
+            <div className={styles.ratingSummary}>
+              <span className={styles.stars}>★★★★★</span>
+              <span className={styles.ratingText}>4.8 (142 Reviews)</span>
+            </div>
+            <p className={styles.truth}>{product.truth}</p>
+          </div>
+
+          <ProductActions
+            product={product}
+            fullPrice={product.fullPrice}
+            refillPrice={product.refillPrice}
+            subscriptionPrice={product.subscriptionPrice}
+          />
+
+          <SocialShare
+            title={`Isola Vitale — ${product.name}`}
+            text={`Discover ${product.name}: ${product.truth}`}
+          />
+
+          <div className={styles.accordions}>
+            <Accordion title="What it Does" defaultOpen={true}>
+              <span>{product.description}</span>
+              {product.benefits && product.benefits.length > 0 && (
+                <div style={{ marginTop: '1.5rem' }}>
+                  <strong style={{ display: 'block', marginBottom: '0.75rem' }}>Key Benefits:</strong>
+                  <ul style={{ paddingLeft: '1.25rem', lineHeight: '1.8' }}>
+                    {product.benefits.map((benefit: string, idx: number) => (
+                      <li key={idx}>{benefit}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </Accordion>
+
+            {product.keyIngredients && product.keyIngredients.length > 0 && (
+              <Accordion title="Key Ingredients">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  {product.keyIngredients.map((ingredient: any, idx: number) => (
+                    <div key={idx}>
+                      <strong>{ingredient.name}</strong>
+                      <p style={{ marginTop: '0.25rem', opacity: 0.8 }}>{ingredient.benefit}</p>
+                    </div>
+                  ))}
+                </div>
+              </Accordion>
+            )}
+
+            {product.clinicalResults && (
+              <Accordion title="Clinical Results">
+                <p style={{ marginBottom: '1rem' }}>
+                  <strong>Proven Results in {product.clinicalResults.duration}</strong>
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {product.clinicalResults.results.map((result: any, idx: number) => (
+                    <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span>{result.metric}</span>
+                      <strong style={{ color: 'var(--color-accent)' }}>{result.value}</strong>
+                    </div>
+                  ))}
+                </div>
+              </Accordion>
+            )}
+
+            <Accordion title="Sensory Profile">
+              <span>{product.texture}</span>
+            </Accordion>
+
+            <Accordion title="How to Use">
+              <span>{product.usage}</span>
+            </Accordion>
+
+            {(product as any).whoItsFor && (
+              <Accordion title="Who It's For">
+                <span>{(product as any).whoItsFor}</span>
+              </Accordion>
+            )}
+
+            <Accordion title="Common Questions">
+              <p><strong>Is this suitable for sensitive skin?</strong><br />Yes, the bio-adaptive formula is designed to reduce reactivity.</p>
+              <p style={{ marginTop: '1rem' }}><strong>How long does a bottle last?</strong><br />With daily use (morning and night), one vessel lasts approximately 6-8 weeks.</p>
+              {product.subscriptionPrice && (
+                <p style={{ marginTop: '1rem' }}><strong>Can I subscribe and save?</strong><br />Yes! Subscribe and save 20% on every delivery. Cancel anytime after your first delivery.</p>
+              )}
+            </Accordion>
+          </div>
+        </div>
+      </div>
+
+      <VideoSection />
+      <ReviewSection />
+
+      <section className={styles.upsellSection}>
+        <div className={styles.upsellHeader}>
+          <h2 className={styles.upsellTitle}>Experience more from this series</h2>
+          <Link href="/system" className={styles.viewAllLink}>Shop The System</Link>
+        </div>
+        <div className={styles.upsellGrid}>
+          {upsells.map((item, idx) => (
+            <div key={idx} className={styles.upsellWrapper}>
+              <ProductCard product={item} />
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}

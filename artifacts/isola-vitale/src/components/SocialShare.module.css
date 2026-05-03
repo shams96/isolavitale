@@ -1,0 +1,37 @@
+.container {
+    margin-top: 1rem;
+    display: flex;
+}
+
+.shareBtn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #666;
+    transition: all 0.2s ease;
+}
+
+.shareBtn:hover {
+    color: var(--color-obsidian);
+    border-color: var(--color-obsidian);
+    background-color: #fff;
+}
+
+.icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.label {
+    min-width: 80px;
+    /* Prevent layout jump on text change */
+    text-align: left;
+}

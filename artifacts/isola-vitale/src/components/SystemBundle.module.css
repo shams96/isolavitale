@@ -1,0 +1,135 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--section-padding);
+    color: var(--color-ivory);
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 8rem;
+}
+
+.imageWrapper {
+    position: relative;
+    aspect-ratio: 4/5;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.pretitle {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-accent);
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: var(--heading-size-section);
+    line-height: 1;
+    font-weight: 400;
+}
+
+.description {
+    font-family: var(--font-sans);
+    font-size: var(--text-size-body);
+    line-height: var(--line-height-body);
+    opacity: var(--text-opacity-muted);
+    max-width: 400px;
+}
+
+.priceBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.price {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+}
+
+.saving {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--color-accent);
+}
+
+.cta {
+    background-color: var(--color-ivory);
+    color: var(--color-obsidian);
+    border: none;
+    padding: 1.2rem 3rem;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.9rem;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: all 0.3s ease;
+}
+
+.cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.stepRow {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    border-top: var(--border-standard);
+    padding: 2rem 0;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.stepRow:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.stepNum {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+.stepName {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+}
+
+.stepAction {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    text-decoration: underline;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+}
