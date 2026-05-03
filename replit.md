@@ -94,6 +94,15 @@ pnpm workspace monorepo using TypeScript. Contains two main artifacts: the Isola
 - **Media Library tab**: Upload images/videos directly to Replit object storage, copy URLs, manage all media assets
 - **Settings tab**: Global site configuration (announcement banner, free shipping threshold, subscription discount, footer tagline, contact email, Instagram URL)
 
+## Design System (IM8-Inspired Consistency)
+- **Spacing tokens**: `--page-padding-top: 130px`, `--section-padding: 8rem 6rem` (reduced from 210px / 15rem)
+- **Heading scale**: `--heading-size-section: 3.8rem`, `--heading-size-item: 2.6rem`
+- **Color rhythm**: Ivory/white throughout; single dark emerald accent section per page (SensorySection)
+- **ProductShowcase**: ivory background (was `env-black`), left-aligned header, emerald text
+- **ProductCard**: left-aligned text, stars always visible (★★★★★ 4.8), price always visible, subscribe pricing, ghost "Add to Ritual" CTA overlay on hover
+- **BrandTrustBar**: 5-column trust stats bar (5 Technologies / 28-Day / Refillable / Parma / ∞ Lifetime) — replaces inline-styled block in HomePage
+- **ProductPage** (PDP): sticky 100vh warm-stone image panel (55%), scrollable ivory info panel (45%), step pill, trust row, full-width "ADD TO RITUAL" CTA, dark emerald clinical science section below
+
 ## Frontend Architecture
 - `src/types/product.ts` — canonical `Product` interface (shared across components/pages)
 - `src/hooks/usePageSeo.ts` — updates document.title and all meta/OG/Twitter tags per page

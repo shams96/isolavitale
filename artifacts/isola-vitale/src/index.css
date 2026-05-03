@@ -16,14 +16,14 @@
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Work Sans', system-ui, sans-serif;
 
-  --section-padding: 15rem 6rem;
-  --section-padding-mobile: 10rem 2rem;
+  --section-padding: 8rem 6rem;
+  --section-padding-mobile: 6rem 2rem;
   --heading-size-display: 6rem;
-  --heading-size-section: 4.5rem;
-  --heading-size-item: 2.8rem;
-  --heading-size-card: 1.4rem;
-  --page-padding-top: 210px;
-  --page-padding-top-mobile: 160px;
+  --heading-size-section: 3.8rem;
+  --heading-size-item: 2.6rem;
+  --heading-size-card: 1.35rem;
+  --page-padding-top: 130px;
+  --page-padding-top-mobile: 100px;
   --letter-spacing-couture: 0.3em;
   --letter-spacing-label: 0.4em;
   --text-size-body: 1.1rem;
