@@ -21,24 +21,26 @@ export default function CheckoutPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          items: cart,
-          email: email,
+          // Send only identity fields — prices are resolved server-side
+          items: cart.map((item) => ({
+            id: item.id,
+            quantity: item.quantity,
+            variant: item.variant === 'Refill Cartridge' ? 'Refill Cartridge' : 'Signature Vessel',
+            isSubscription: item.isSubscription ?? false,
+          })),
+          email,
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        if (data.error === 'Stripe configuration missing') {
-          throw new Error('Payment system not configured (Missing Stripe Key).');
-        }
         throw new Error(data.error || 'Checkout failed');
       }
 
       if (data.url) {
         window.location.href = data.url;
       }
-
     } catch (err: any) {
       setError(err.message);
       setIsProcessing(false);
@@ -81,7 +83,7 @@ export default function CheckoutPage() {
             <form className={styles.form} onSubmit={handleCheckout}>
               <h2 className={styles.sectionTitle}>Contact Information</h2>
               <p style={{ marginBottom: '1.5rem', color: '#666', fontSize: '0.9rem' }}>
-                You will be redirected to Stripe's secure checkout to securely enter your shipping address and payment details.
+                You will be redirected to Stripe's secure checkout to enter your shipping address and payment details.
               </p>
               <input
                 type="email"
