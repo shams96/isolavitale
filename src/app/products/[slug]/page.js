@@ -47,7 +47,7 @@ export async function generateMetadata({ params }) {
     return {
         title: `${product.name} | Chiarelle`,
         description: product.description ?
-            `${product.description.substring(0, 150)}... ${product.technologies || 'Cellular Vitality. Chiarelle Crafted.'}` :
+            `${product.description.substring(0, 150)}... ${product.technologies || 'Advancing Cellular Clarity™.'}` :
             'Luxury Italian skincare with breakthrough cellular technologies.',
         openGraph: {
             title: `${product.name} — Chiarelle`,

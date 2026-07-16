@@ -71,7 +71,7 @@ function generateOrderConfirmationHTML(order) {
                     <tr>
                         <td style="background-color: #2c2c2c; padding: 40px; text-align: center;">
                             <h1 style="color: #f5f5f0; margin: 0; font-size: 28px; letter-spacing: 2px;">CHIARELLE</h1>
-                            <p style="color: #c9a959; margin: 10px 0 0 0; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Cellular Vitality. Chiarelle Crafted.</p>
+                            <p style="color: #c9a959; margin: 10px 0 0 0; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Advancing Cellular Clarity&trade;.</p>
                         </td>
                     </tr>
 
@@ -151,7 +151,7 @@ function generateOrderConfirmationHTML(order) {
                         <td style="background-color: #f9f9f9; padding: 30px; text-align: center; border-top: 1px solid #eee;">
                             <p style="color: #999; margin: 0; font-size: 12px; line-height: 1.6;">
                                 © ${new Date().getFullYear()} Chiarelle. All rights reserved.<br>
-                                Cellular Vitality. Chiarelle Crafted.
+                                Advancing Cellular Clarity&trade;.
                             </p>
                         </td>
                     </tr>

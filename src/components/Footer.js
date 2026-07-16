@@ -9,7 +9,7 @@ export default function Footer() {
                     <div className={styles.brandColumn}>
                         <span className={styles.logo}>CHIARELLE</span>
                         <p className={styles.tagline}>
-                            Cellular Vitality. Chiarelle Crafted. Laboratory-grade efficacy formulated in Italy.
+                            Advancing Cellular Clarity™. Laboratory-grade efficacy formulated in Italy.
                         </p>
                     </div>
 

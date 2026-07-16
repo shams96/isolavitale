@@ -33,7 +33,7 @@ export default async function Home() {
       <Hero
         imageSrc={data.heroImage || "/hero-model.jpg"}
         headline={data.heroHeadline || "Where Italian Craftsmanship<br />Meets Cellular Science"}
-        subheadline={data.heroSubheadline || "Cellular Vitality. Isola Crafted."}
+        subheadline={data.heroSubheadline || "Advancing Cellular Clarity™."}
         cta="Discover Collections"
         ctaLink="/products"
       />

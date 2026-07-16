@@ -19,8 +19,8 @@ export default function ProductsPage() {
                     <FadeIn>
                         <span className={styles.label}>The Collections</span>
                         <h1 className={styles.title}>
-                            Cellular Vitality<br />
-                            <span className={styles.titleAccent}>Isola Crafted</span>
+                            Advancing<br />
+                            <span className={styles.titleAccent}>Cellular Clarity™</span>
                         </h1>
                         <div className={styles.divider} />
                     </FadeIn>
