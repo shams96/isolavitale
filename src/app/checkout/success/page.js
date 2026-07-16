@@ -31,7 +31,7 @@ export default function CheckoutSuccessPage({ searchParams }) {
                     marginBottom: '2rem',
                     lineHeight: '1.6'
                 }}>
-                    Thank you for your purchase from Isola Vitale. Your order has been confirmed and will be processed shortly.
+                    Thank you for your purchase from Chiarelle. Your order has been confirmed and will be processed shortly.
                 </p>
                 <p style={{
                     fontFamily: 'var(--font-sans)',

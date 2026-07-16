@@ -7,9 +7,9 @@ export default function Footer() {
             <div className={styles.container}>
                 <div className={styles.top}>
                     <div className={styles.brandColumn}>
-                        <span className={styles.logo}>ISOLA VITALE</span>
+                        <span className={styles.logo}>CHIARELLE</span>
                         <p className={styles.tagline}>
-                            Cellular Vitality. Isola Crafted. Laboratory-grade efficacy formulated in Italy.
+                            Cellular Vitality. Chiarelle Crafted. Laboratory-grade efficacy formulated in Italy.
                         </p>
                     </div>
 
@@ -34,14 +34,14 @@ export default function Footer() {
                     <div className={styles.column}>
                         <h4 className={styles.columnTitle}>Contact</h4>
                         <ul className={styles.links}>
-                            <li><a href="mailto:info@isolavitale.com" className={styles.link}>Inquiries</a></li>
+                            <li><a href="mailto:info@chiarelle.com" className={styles.link}>Inquiries</a></li>
                             <li><Link href="/contact" className={styles.link}>Support</Link></li>
                         </ul>
                     </div>
                 </div>
 
                 <div className={styles.bottom}>
-                    <p className={styles.copyright}>© {new Date().getFullYear()} Isola Vitale. All Rights Reserved.</p>
+                    <p className={styles.copyright}>© {new Date().getFullYear()} Chiarelle. All Rights Reserved.</p>
                     <div className={styles.legal}>
                         <Link href="/privacy" className={styles.link}>Privacy</Link>
                         <Link href="/terms" className={styles.link}>Terms</Link>

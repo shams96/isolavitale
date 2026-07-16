@@ -137,7 +137,7 @@ export default function CartDrawer() {
                     
                     {/* Ambassador Trust Bar */}
                     <div className={styles.trustBar}>
-                        <p className={styles.quote}>"As a specialist in cellular longevity, I trust Isola Vitale because the third-party testing ensures clinical-grade purity in every jar."</p>
+                        <p className={styles.quote}>"As a specialist in cellular longevity, I trust Chiarelle because the third-party testing ensures clinical-grade purity in every jar."</p>
                         <p className={styles.author}>— Dr. E. Rossi, Longevity Specialist</p>
                     </div>
 

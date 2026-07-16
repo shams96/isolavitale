@@ -18,7 +18,7 @@ export default function ProductShowcase() {
             <div className={styles.container}>
                 <div className={styles.header}>
                     <span className={styles.label}>The Ritual</span>
-                    <h2 className={styles.title}>The Isola Vitale™ System</h2>
+                    <h2 className={styles.title}>The Chiarelle™ System</h2>
                 </div>
 
                 <div className={styles.list}>

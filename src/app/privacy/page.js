@@ -38,7 +38,7 @@ export default async function PrivacyPage() {
                             <section>
                                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', marginBottom: '1rem' }}>1. Introduction</h2>
                                 <p>
-                                    Welcome to Isola Vitale. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.
+                                    Welcome to Chiarelle. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.
                                 </p>
                             </section>
 
@@ -77,7 +77,7 @@ export default async function PrivacyPage() {
                             <section>
                                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', marginBottom: '1rem' }}>5. Contact Details</h2>
                                 <p>
-                                    If you have any questions about this privacy policy or our privacy practices, please contact us at: <a href="mailto:info@isolavitale.com" style={{ textDecoration: 'underline', color: 'var(--color-accent)' }}>info@isolavitale.com</a>
+                                    If you have any questions about this privacy policy or our privacy practices, please contact us at: <a href="mailto:info@chiarelle.com" style={{ textDecoration: 'underline', color: 'var(--color-accent)' }}>info@chiarelle.com</a>
                                 </p>
                             </section>
                         </div>

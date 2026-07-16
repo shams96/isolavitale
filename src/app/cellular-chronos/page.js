@@ -5,7 +5,7 @@ import styles from '../products/page.module.css';
 import FadeIn from '@/components/FadeIn';
 
 export const metadata = {
-    title: 'Cellular Chronos Collection | Isola Vitale',
+    title: 'Cellular Chronos Collection | Chiarelle',
     description: 'Age-specific precision skincare. Formulations optimized for your exact life stage. €95-290.',
 };
 

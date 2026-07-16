@@ -102,7 +102,7 @@ export async function POST(req) {
             ],
             allow_promotion_codes: true,
             metadata: {
-                source: 'IsolaVitale',
+                source: 'Chiarelle',
                 orderType: 'standard'
             }
         });

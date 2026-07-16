@@ -20,8 +20,8 @@ export default function SystemBundle() {
 
         // Add the bundle as a single item to the cart, referencing the new product IDs
         addToCart({
-            id: 'isola-vitale-biosphere-system-bundle', // New bundle ID
-            name: 'The Isola Vitale System', // New bundle name
+            id: 'chiarelle-biosphere-system-bundle', // New bundle ID
+            name: 'The Chiarelle System', // New bundle name
             price: 580, // Keep the bundle price as specified, or calculate from items
             imageSrc: '/biosphere-system.png',
             variant: 'Complete Protocol (Mist + Essence + Cream)', // Updated variant description

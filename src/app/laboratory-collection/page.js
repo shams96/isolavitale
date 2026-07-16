@@ -5,7 +5,7 @@ import styles from '../page.module.css';
 import FadeIn from '@/components/FadeIn';
 
 export const metadata = {
-    title: 'Laboratory Collection | Isola Vitale',
+    title: 'Laboratory Collection | Chiarelle',
     description: 'Advanced clinical formulations with breakthrough cellular technologies. €120-380.',
 };
 

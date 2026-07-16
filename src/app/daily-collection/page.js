@@ -5,7 +5,7 @@ import styles from '../products/page.module.css';
 import FadeIn from '@/components/FadeIn';
 
 export const metadata = {
-    title: 'Daily Collection | Isola Vitale',
+    title: 'Daily Collection | Chiarelle',
     description: 'Effortless luxury skincare for daily care. Advanced technology in comfortable formulations. €85-200.',
 };
 

@@ -7,7 +7,7 @@ import Image from 'next/image';
 const steps = [
     {
         id: 'intro',
-        title: "Initialize Isola Vitale Scan",
+        title: "Initialize Chiarelle Scan",
         subtitle: "Analyzing your bio-environmental signature.",
         button: "Begin Analysis"
     },
@@ -50,7 +50,7 @@ export default function DiagnosisPage() {
     const handleSystemAdd = () => {
         addToCart({
             id: 'biosphere-system-bundle',
-            name: 'The Isola Vitale System',
+            name: 'The Chiarelle System',
             price: 580,
             imageSrc: '/products-group.jpg',
             variant: 'Complete Protocol (Serum + Cream)',
@@ -109,7 +109,7 @@ export default function DiagnosisPage() {
 
                         <div className={styles.recommendationBox}>
                             <span className={styles.recLabel}>Prescribed Protocol</span>
-                            <h2 className={styles.recTitle}>The Isola Vitale™ System</h2>
+                            <h2 className={styles.recTitle}>The Chiarelle™ System</h2>
                             <p style={{ fontSize: '0.8rem', opacity: 0.7, marginBottom: '1rem' }}>
                                 Peptide Renewal Essence + Barrier Repair Cream
                             </p>

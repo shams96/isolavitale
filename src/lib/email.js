@@ -16,7 +16,7 @@ export async function sendOrderConfirmation(orderData) {
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         const { data, error } = await resend.emails.send({
-            from: process.env.EMAIL_FROM || 'Aurabio <orders@aurabio.com>',
+            from: process.env.EMAIL_FROM || 'Chiarelle <orders@chiarelle.com>',
             to: [orderData.customer.email],
             subject: `Order Confirmation - ${orderData.orderNumber}`,
             html: generateOrderConfirmationHTML(orderData),
@@ -70,8 +70,8 @@ function generateOrderConfirmationHTML(order) {
                     <!-- Header -->
                     <tr>
                         <td style="background-color: #2c2c2c; padding: 40px; text-align: center;">
-                            <h1 style="color: #f5f5f0; margin: 0; font-size: 28px; letter-spacing: 2px;">AURABIO</h1>
-                            <p style="color: #c9a959; margin: 10px 0 0 0; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Cellular Vitality. Isola Crafted.</p>
+                            <h1 style="color: #f5f5f0; margin: 0; font-size: 28px; letter-spacing: 2px;">CHIARELLE</h1>
+                            <p style="color: #c9a959; margin: 10px 0 0 0; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Cellular Vitality. Chiarelle Crafted.</p>
                         </td>
                     </tr>
 
@@ -141,7 +141,7 @@ function generateOrderConfirmationHTML(order) {
                             ` : ''}
 
                             <p style="color: #666; line-height: 1.6; margin: 30px 0 0 0;">
-                                If you have any questions about your order, please don't hesitate to contact us at <a href="mailto:support@aurabio.com" style="color: #c9a959;">support@aurabio.com</a>.
+                                If you have any questions about your order, please don't hesitate to contact us at <a href="mailto:support@chiarelle.com" style="color: #c9a959;">support@chiarelle.com</a>.
                             </p>
                         </td>
                     </tr>
@@ -150,8 +150,8 @@ function generateOrderConfirmationHTML(order) {
                     <tr>
                         <td style="background-color: #f9f9f9; padding: 30px; text-align: center; border-top: 1px solid #eee;">
                             <p style="color: #999; margin: 0; font-size: 12px; line-height: 1.6;">
-                                © ${new Date().getFullYear()} Aurabio. All rights reserved.<br>
-                                Cellular Vitality. Isola Crafted.
+                                © ${new Date().getFullYear()} Chiarelle. All rights reserved.<br>
+                                Cellular Vitality. Chiarelle Crafted.
                             </p>
                         </td>
                     </tr>
@@ -176,7 +176,7 @@ export async function sendShippingConfirmation(order, trackingInfo) {
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         const { data, error } = await resend.emails.send({
-            from: process.env.EMAIL_FROM || 'Aurabio <orders@aurabio.com>',
+            from: process.env.EMAIL_FROM || 'Chiarelle <orders@chiarelle.com>',
             to: [order.customer.email],
             subject: `Your Order Has Shipped - ${order.orderNumber}`,
             html: `

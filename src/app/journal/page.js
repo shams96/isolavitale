@@ -9,7 +9,7 @@ const articles = [
         category: "Science",
         date: "Oct 12, 2025",
         excerpt: "Why the skin's circadian rhythm dictates the efficacy of molecular actives.",
-        imageSrc: "/aurabio-tech.png"
+        imageSrc: "/chiarelle-tech.png"
     },
     {
         id: 2,

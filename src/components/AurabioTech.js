@@ -9,7 +9,7 @@ export default function AurabioTech({ imageSrc }) {
                     <span className={styles.label}>Core Technology</span>
                     <h2 className={styles.headline}>Intelligence<br />That Adapts</h2>
                     <p className={styles.description}>
-                        Your skin&apos;s needs fluctuate by the hour. Isola Vitale is the world&apos;s first bio-adaptive complex that reads these micro-changes.
+                        Your skin&apos;s needs fluctuate by the hour. Chiarelle is the world&apos;s first bio-adaptive complex that reads these micro-changes.
                     </p>
                     <p className={styles.description}>
                         It delivers hydration, repair, or protection exactly when and where it is required, mimicking the skin&apos;s own biological rhythms.
@@ -20,7 +20,7 @@ export default function AurabioTech({ imageSrc }) {
                     {imageSrc && (
                         <Image
                             src={imageSrc}
-                            alt="Aurabio Abstract Structure"
+                            alt="Chiarelle Abstract Structure"
                             fill
                             className={styles.image}
                         />

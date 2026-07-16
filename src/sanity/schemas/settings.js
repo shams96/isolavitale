@@ -14,14 +14,14 @@ export default {
             name: 'siteName',
             title: 'Site Name',
             type: 'string',
-            description: 'Aurabio',
+            description: 'Chiarelle',
             group: 'general'
         },
         {
             name: 'siteUrl',
             title: 'Site URL',
             type: 'url',
-            description: 'https://aurabio.com',
+            description: 'https://chiarelle.com',
             group: 'general'
         },
         {

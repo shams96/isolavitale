@@ -18,7 +18,7 @@ export default function VideoSection() {
                                 <div className={styles.overlay} />
                                 <Image
                                     src="/hero-cream.png"
-                                    alt="How to use Aurabio"
+                                    alt="How to use Chiarelle"
                                     fill
                                     className={styles.image}
                                     style={{ objectFit: 'cover' }}

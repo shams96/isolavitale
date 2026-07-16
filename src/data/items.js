@@ -1,4 +1,4 @@
-// ISOLA VITALE COMPLETE PRODUCT CATALOG
+// CHIARELLE COMPLETE PRODUCT CATALOG
 // 3 Collections: Laboratory, Daily, Cellular Chronos
 // Updated: January 2026
 
@@ -138,7 +138,7 @@ export const LABORATORY_COLLECTION = [
         technologies: 'OS-01 + L-ORNITHINE + GLP-1 + FERMENTED RECOVERY',
         step: 'Night Treatment',
         truth: 'Complete overnight cellular renewal',
-        description: 'Our most comprehensive overnight renewal treatment featuring the complete Isola Vitale technology matrix. This intensive treatment combines all four breakthrough technologies to maximize cellular repair and regeneration during sleep\'s optimal recovery phase.',
+        description: 'Our most comprehensive overnight renewal treatment featuring the complete Chiarelle technology matrix. This intensive treatment combines all four breakthrough technologies to maximize cellular repair and regeneration during sleep\'s optimal recovery phase.',
         texture: 'Rich, restorative balm',
         usage: 'Apply generously to clean skin every evening. Allow to absorb completely before pillowcase contact. Begin with every other evening if new to intensive treatments.',
         imageSrc: '/Night Repair Peptide.png',
@@ -258,10 +258,10 @@ export const LABORATORY_COLLECTION = [
         technologies: 'ALL 5 TECHNOLOGIES + SPECIALIZED EYE PEPTIDES',
         step: 'Eye Treatment',
         truth: 'Complete eye area transformation',
-        description: 'Our most comprehensive eye treatment featuring the complete Isola Vitale 5-technology matrix specifically optimized for the delicate eye area. Enhanced with specialized peptides targeting dark circles, puffiness, and expression lines.',
+        description: 'Our most comprehensive eye treatment featuring the complete Chiarelle 5-technology matrix specifically optimized for the delicate eye area. Enhanced with specialized peptides targeting dark circles, puffiness, and expression lines.',
         texture: 'Lightweight, fast-absorbing gel-cream',
         usage: 'Gently pat small amount around eye area using ring finger. Apply morning and evening after essence, before moisturizer.',
-        imageSrc: '/aurabio-tech.png',
+        imageSrc: '/chiarelle-tech.png',
         fullPrice: 380,
         refillPrice: 265,
         subscriptionPrice: 212,
@@ -464,7 +464,7 @@ export const DAILY_COLLECTION = [
                 { metric: 'Cleanliness without tightness', value: '98%' }
             ]
         },
-        whoItsFor: 'Perfect introduction to Isola Vitale. Essential daily cleansing for all skin types.'
+        whoItsFor: 'Perfect introduction to Chiarelle. Essential daily cleansing for all skin types.'
     },
     {
         id: 'radiant-eye-gel',
@@ -477,7 +477,7 @@ export const DAILY_COLLECTION = [
         description: 'Gentle yet effective eye treatment with L-Ornithine technology and fermented enhancement for daily eye area care.',
         texture: 'Lightweight, fast-absorbing gel-cream',
         usage: 'Gently pat around eye area morning and evening.',
-        imageSrc: '/aurabio-tech.png',
+        imageSrc: '/chiarelle-tech.png',
         fullPrice: 200,
         refillPrice: 140,
         subscriptionPrice: 112,
@@ -637,7 +637,7 @@ export const CELLULAR_CHRONOS_COLLECTION = [
         technologies: 'ALL 5 TECHNOLOGIES + COMPLETE RENEWAL MATRIX',
         step: 'Cream',
         truth: 'Complete cellular restoration',
-        description: 'Complete restoration featuring all five Isola Vitale technologies for comprehensive cellular renewal and age reversal. Maximum technology concentration for mature skin requiring intensive restoration.',
+        description: 'Complete restoration featuring all five Chiarelle technologies for comprehensive cellular renewal and age reversal. Maximum technology concentration for mature skin requiring intensive restoration.',
         texture: 'Rich, restorative cream',
         usage: 'Apply generously to face and neck morning and evening.',
         imageSrc: '/cream.png',
@@ -650,7 +650,7 @@ export const CELLULAR_CHRONOS_COLLECTION = [
             'Comprehensive reversal of multiple visible signs of aging',
             'Intensive barrier replenishment for mature skin',
             'Restores youthful radiance and even skin tone',
-            'Maximum concentration of Isola Vitale technologies'
+            'Maximum concentration of Chiarelle technologies'
         ],
         keyIngredients: [
             { name: 'Complete 5-Tech Matrix', benefit: 'Maximum anti-aging potential' },

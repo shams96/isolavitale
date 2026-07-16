@@ -6,7 +6,7 @@ import styles from './page.module.css';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-    title: 'Collections | Isola Vitale',
+    title: 'Collections | Chiarelle',
     description: '3 distinct collections featuring 5 breakthrough cellular technologies. Laboratory-grade efficacy crafted in Italy.',
 };
 

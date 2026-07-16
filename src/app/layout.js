@@ -24,14 +24,14 @@ const workSans = Work_Sans({
 });
 
 export const metadata = {
-  title: "Isola Vitale | Liri Mineral-Infused Italian Luxury Skincare",
+  title: "Chiarelle | Liri Mineral-Infused Italian Luxury Skincare",
   description: "Experience waterfall-powered beauty rituals from Isola del Liri. Lab-engineered peptides and sustainable refillable luxury. Defined by Italian Craftsmanship and Skin Longevity.",
   keywords: [
     "Liri Mineral-Infused Skincare", "Waterfall-Powered Beauty Rituals", "Italian Craftsmanship", "Skin Longevity",
     "Clean Label Luxury", "Sustainable Beauty", "Ceramide Barrier Repair",
     "Advanced Peptides", "Regenerative Beauty", "Barrier-First Skincare", "Bio-Adaptive Tech", "Postbiotic Barrier Support", "Skinimalism 2.0"
   ],
-  metadataBase: new URL('https://www.isolavitale.com'),
+  metadataBase: new URL('https://www.chiarelle.com'),
 };
 
 export const viewport = {
@@ -47,9 +47,9 @@ export default function RootLayout({ children }) {
   const orgSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Isola Vitale',
-    url: 'https://www.isolavitale.com',
-    logo: 'https://www.isolavitale.com/logo.png',
+    name: 'Chiarelle',
+    url: 'https://www.chiarelle.com',
+    logo: 'https://www.chiarelle.com/logo.png',
     description: 'Liri Mineral-Infused Italian Luxury Skincare.',
     address: {
       '@type': 'PostalAddress',
@@ -58,8 +58,8 @@ export default function RootLayout({ children }) {
       addressCountry: 'IT'
     },
     sameAs: [
-      'https://www.instagram.com/isolavitale',
-      'https://www.facebook.com/isolavitale'
+      'https://www.instagram.com/chiarelle',
+      'https://www.facebook.com/chiarelle'
     ]
   };
 

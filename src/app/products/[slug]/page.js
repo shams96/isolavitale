@@ -42,15 +42,15 @@ export async function generateMetadata({ params }) {
     const mockProduct = getProductBySlug(slug);
     const product = sanityProduct || mockProduct;
 
-    if (!product) return { title: 'Isola Vitale — Product Not Found' };
+    if (!product) return { title: 'Chiarelle — Product Not Found' };
 
     return {
-        title: `${product.name} | Isola Vitale`,
+        title: `${product.name} | Chiarelle`,
         description: product.description ?
-            `${product.description.substring(0, 150)}... ${product.technologies || 'Cellular Vitality. Isola Crafted.'}` :
+            `${product.description.substring(0, 150)}... ${product.technologies || 'Cellular Vitality. Chiarelle Crafted.'}` :
             'Luxury Italian skincare with breakthrough cellular technologies.',
         openGraph: {
-            title: `${product.name} — Isola Vitale`,
+            title: `${product.name} — Chiarelle`,
             description: product.technologies || product.truth || 'Italian Craftsmanship Meets Cellular Science',
             images: [product.imageSrc || product.image || '/serum-uniform.png'],
         },
@@ -80,17 +80,17 @@ export default async function ProductPage({ params }) {
         '@context': 'https://schema.org',
         '@type': 'Product',
         name: product.name,
-        image: (product.imageSrc || product.image) ? `https://www.isolavitale.com${product.imageSrc || product.image}` : undefined,
+        image: (product.imageSrc || product.image) ? `https://www.chiarelle.com${product.imageSrc || product.image}` : undefined,
         description: product.description,
         sku: product.id,
         brand: {
             '@type': 'Brand',
-            name: 'Isola Vitale',
+            name: 'Chiarelle',
             slogan: 'Milano'
         },
         offers: {
             '@type': 'Offer',
-            url: `https://www.isolavitale.com/products/${product.slug}`,
+            url: `https://www.chiarelle.com/products/${product.slug}`,
             priceCurrency: 'USD',
             price: product.fullPrice,
             availability: 'https://schema.org/InStock',
@@ -169,7 +169,7 @@ export default async function ProductPage({ params }) {
 
                     {/* Social Share */}
                     <SocialShare
-                        title={`Isola Vitale — ${product.name}`}
+                        title={`Chiarelle — ${product.name}`}
                         text={`Discover ${product.name}: ${product.truth}`}
                     />
 

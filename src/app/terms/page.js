@@ -38,14 +38,14 @@ export default async function TermsPage() {
                             <section>
                                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', marginBottom: '1rem' }}>1. Agreement to Terms</h2>
                                 <p>
-                                    By accessing our website Isola Vitale and purchasing our products, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
+                                    By accessing our website Chiarelle and purchasing our products, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
                                 </p>
                             </section>
 
                             <section>
                                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', marginBottom: '1rem' }}>2. Use License</h2>
                                 <p>
-                                    Permission is granted to temporarily download one copy of the materials (information or software) on Isola Vitale's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.
+                                    Permission is granted to temporarily download one copy of the materials (information or software) on Chiarelle's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.
                                 </p>
                             </section>
 
@@ -59,14 +59,14 @@ export default async function TermsPage() {
                             <section>
                                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', marginBottom: '1rem' }}>4. Returns and Refunds</h2>
                                 <p>
-                                    Our goal is to ensure that you are completely satisfied with your purchase. If for any reason you are not satisfied, please contact us at <a href="mailto:info@isolavitale.com" style={{ textDecoration: 'underline', color: 'var(--color-accent)' }}>info@isolavitale.com</a> within 30 days of your purchase to arrange a return. Products must be returned in their original condition.
+                                    Our goal is to ensure that you are completely satisfied with your purchase. If for any reason you are not satisfied, please contact us at <a href="mailto:info@chiarelle.com" style={{ textDecoration: 'underline', color: 'var(--color-accent)' }}>info@chiarelle.com</a> within 30 days of your purchase to arrange a return. Products must be returned in their original condition.
                                 </p>
                             </section>
 
                             <section>
                                 <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', marginBottom: '1rem' }}>5. Limitation of Liability</h2>
                                 <p>
-                                    In no event shall Isola Vitale or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Isola Vitale's website, even if Isola Vitale or a authorized representative has been notified orally or in writing of the possibility of such damage.
+                                    In no event shall Chiarelle or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Chiarelle's website, even if Chiarelle or a authorized representative has been notified orally or in writing of the possibility of such damage.
                                 </p>
                             </section>
 

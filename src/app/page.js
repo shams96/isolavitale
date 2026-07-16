@@ -47,7 +47,7 @@ export default async function Home() {
         </div>
       </FadeIn>
       <FadeIn delay={200}>
-        <AurabioTech imageSrc="/aurabio-tech.png" />
+        <AurabioTech imageSrc="/chiarelle-tech.png" />
       </FadeIn>
       <FadeIn delay={200}>
         <ProductShowcase />

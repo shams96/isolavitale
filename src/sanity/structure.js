@@ -1,6 +1,6 @@
 export const structure = (S) =>
     S.list()
-        .title('Aurabio CMS')
+        .title('Chiarelle CMS')
         .items([
             // PRODUCTS SECTION
             S.listItem()

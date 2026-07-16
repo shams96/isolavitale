@@ -26,11 +26,11 @@ export default function Header() {
             <div className={styles.navSide}>
                 <Link href="/products" className={styles.link}>Shop All</Link>
                 <Link href="/system" className={styles.link}>The System</Link>
-                <Link href="/technology" className={styles.link}>Aurabio™</Link>
+                <Link href="/technology" className={styles.link}>Chiarelle™</Link>
             </div>
 
             <Link href="/" className={styles.logo}>
-                <span className={styles.logoMain}>Isola Vitale</span>
+                <span className={styles.logoMain}>Chiarelle</span>
                 <span className={styles.logoSubtext}>Milano</span>
             </Link>
 

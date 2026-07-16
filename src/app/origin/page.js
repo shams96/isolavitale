@@ -18,7 +18,7 @@ export default function OriginPage() {
                     </div>
                     <div className={styles.imageContainer}>
                         <video
-                            src="/isola-vitale-origin.mp4"
+                            src="/chiarelle-origin.mp4"
                             className={styles.cinematicVideo}
                             autoPlay
                             loop
@@ -38,7 +38,7 @@ export default function OriginPage() {
                         <span className="u-overline">Provenance</span>
                         <h2 className="u-hero-title" style={{fontSize: 'var(--heading-size-section)'}}>Vital Energy</h2>
                         <p className="u-body-text" style={{marginBottom: '2rem', maxWidth: '500px'}}>
-                            We have captured this vital energy in Isola Vitale. Our formulas are enriched with the natural minerals and unique botanicals native to the Frosinone province.
+                            We have captured this vital energy in Chiarelle. Our formulas are enriched with the natural minerals and unique botanicals native to the Frosinone province.
                         </p>
                         <span className={styles.stat}>Isola del Liri • Frosinone</span>
                     </div>
