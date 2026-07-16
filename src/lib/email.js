@@ -47,7 +47,7 @@ function generateOrderConfirmationHTML(order) {
                 ${item.quantity}
             </td>
             <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">
-                $${item.price.toFixed(2)}
+                $${formatPrice(item.price)}
             </td>
         </tr>
     `
@@ -108,21 +108,21 @@ function generateOrderConfirmationHTML(order) {
                                 <tfoot>
                                     <tr>
                                         <td colspan="2" style="padding: 15px; text-align: right; font-weight: bold; border-top: 2px solid #2c2c2c;">Subtotal:</td>
-                                        <td style="padding: 15px; text-align: right; border-top: 2px solid #2c2c2c;">$${order.subtotal.toFixed(2)}</td>
+                                        <td style="padding: 15px; text-align: right; border-top: 2px solid #2c2c2c;">$${formatPrice(order.subtotal)}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" style="padding: 15px; text-align: right;">Shipping:</td>
-                                        <td style="padding: 15px; text-align: right;">${order.shippingCost === 0 ? 'FREE' : '$' + order.shippingCost.toFixed(2)}</td>
+                                        <td style="padding: 15px; text-align: right;">${order.shippingCost === 0 ? 'FREE' : '$' + formatPrice(order.shippingCost)}</td>
                                     </tr>
                                     ${order.tax > 0 ? `
                                     <tr>
                                         <td colspan="2" style="padding: 15px; text-align: right;">Tax:</td>
-                                        <td style="padding: 15px; text-align: right;">$${order.tax.toFixed(2)}</td>
+                                        <td style="padding: 15px; text-align: right;">$${formatPrice(order.tax)}</td>
                                     </tr>
                                     ` : ''}
                                     <tr>
                                         <td colspan="2" style="padding: 15px; text-align: right; font-weight: bold; font-size: 18px; border-top: 2px solid #2c2c2c;">Total:</td>
-                                        <td style="padding: 15px; text-align: right; font-weight: bold; font-size: 18px; border-top: 2px solid #2c2c2c;">$${order.total.toFixed(2)}</td>
+                                        <td style="padding: 15px; text-align: right; font-weight: bold; font-size: 18px; border-top: 2px solid #2c2c2c;">$${formatPrice(order.total)}</td>
                                     </tr>
                                 </tfoot>
                             </table>

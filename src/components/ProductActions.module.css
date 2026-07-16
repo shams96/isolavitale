@@ -37,7 +37,6 @@
     content: '';
     position: absolute;
     bottom: -1px;
-    /* Overlap border */
     left: 0;
     width: 100%;
     height: 2px;
@@ -58,7 +57,6 @@
         opacity: 0;
         transform: translateY(5px);
     }
-
     to {
         opacity: 0.7;
         transform: translateY(0);
@@ -66,52 +64,145 @@
 }
 
 .subscriptionBox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.subOption {
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(197, 160, 89, 0.2);
-    padding: 1.5rem;
+    padding: 1rem;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 1rem;
-    border-left: 4px solid var(--color-accent);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    opacity: 0.7;
+    transition: all 0.2s;
     border-radius: 4px;
 }
 
-.subOption {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    cursor: pointer;
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    opacity: 0.6;
-    transition: opacity 0.2s;
+.tier1 {
+    border: 1px solid var(--color-accent);
+    background: rgba(197, 160, 89, 0.05);
 }
 
 .subActive {
     opacity: 1;
-    font-weight: 600;
+    border-color: var(--color-obsidian);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.tier1.subActive {
+    border-color: var(--color-accent);
+}
+
+.radioWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .radio {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     border: 1px solid var(--color-obsidian);
     border-radius: 50%;
     position: relative;
+    opacity: 0.5;
+}
+
+.subActive .radio {
+    opacity: 1;
 }
 
 .subActive .radio::after {
     content: '';
     position: absolute;
-    top: 3px;
-    left: 3px;
+    top: 4px;
+    left: 4px;
     width: 8px;
     height: 8px;
     background-color: var(--color-obsidian);
     border-radius: 50%;
+}
+
+.tier1.subActive .radio::after {
+    background-color: var(--color-accent);
+}
+
+.tier1.subActive .radio {
+    border-color: var(--color-accent);
+}
+
+.tierInfo {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 0.25rem;
+}
+
+.tierTitle {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.bestValueBadge {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--color-accent);
+    color: white;
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    align-self: flex-start;
+}
+
+.tierPrice {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.tierPrice strong {
+    font-size: 1rem;
+    font-family: var(--font-serif);
+}
+
+.billedInfo {
+    font-size: 0.65rem;
+    opacity: 0.6;
+}
+
+.lossAversionBanner {
+    background: rgba(200, 50, 50, 0.1);
+    color: #a02a2a;
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: var(--font-sans);
+    border-left: 3px solid #a02a2a;
+    margin-top: 0.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.guaranteeBadge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+}
+
+.shieldIcon {
+    font-size: 1.1rem;
 }
 
 .footer {
@@ -124,6 +215,15 @@
 .priceDisplay {
     font-family: var(--font-serif);
     font-size: 1.5rem;
+    display: flex;
+    align-items: baseline;
+}
+
+.moSuffix {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    opacity: 0.6;
+    margin-left: 0.2rem;
 }
 
 .button {

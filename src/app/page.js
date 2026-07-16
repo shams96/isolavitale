@@ -38,7 +38,7 @@ export default async function Home() {
         ctaLink="/products"
       />
       <FadeIn delay={200}>
-        <div style={{ textAlign: 'center', padding: '6rem 2rem', backgroundColor: 'var(--color-ivory)', color: 'var(--color-obsidian)' }}>
+        <div className="u-page-container" style={{ textAlign: 'center', padding: '6rem 2rem' }}>
           <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--color-accent)' }}>Italian Heritage</span>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', margin: '1.5rem 0' }}>Crafted in Isola del Liri</h2>
           <p style={{ fontFamily: 'var(--font-sans)', opacity: '0.8', maxWidth: '600px', margin: '0 auto', lineHeight: '1.6' }}>

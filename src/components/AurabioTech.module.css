@@ -42,7 +42,7 @@
 .visual {
     position: relative;
     aspect-ratio: 1/1;
-    background: var(--color-ivory);
+    background: var(--color-emerald-light);
     overflow: hidden;
     border: var(--border-ultra);
 }

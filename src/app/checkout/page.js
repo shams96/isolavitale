@@ -3,6 +3,7 @@ import styles from './page.module.css';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { useState } from 'react';
+import { formatPrice } from '@/lib/formatPrice';
 
 export default function CheckoutPage() {
     const { cart, subtotal } = useCart();
@@ -60,7 +61,7 @@ export default function CheckoutPage() {
     }
 
     return (
-        <main className={`${styles.main} env-white`}>
+        <main className={styles.main}>
             <div className={styles.container}>
                 <h1 className={styles.title}>Secure Checkout</h1>
 
@@ -101,7 +102,7 @@ export default function CheckoutPage() {
                                 disabled={isProcessing}
                                 style={{ marginTop: '2rem' }}
                             >
-                                {isProcessing ? 'Processing secure checkout...' : `Continue to Payment ($${subtotal.toFixed(2)})`}
+                                {isProcessing ? 'Processing secure checkout...' : `Continue to Payment ($${formatPrice(subtotal)})`}
                             </button>
                         </form>
 
@@ -121,13 +122,13 @@ export default function CheckoutPage() {
                                         <span className={styles.itemVariant}>{item.variant}</span>
                                         <span className={styles.itemQty}>Qty: {item.quantity}</span>
                                     </div>
-                                    <span className={styles.itemPrice}>${(item.price * item.quantity).toFixed(2)}</span>
+                                    <span className={styles.itemPrice}>${formatPrice(item.price * item.quantity)}</span>
                                 </div>
                             ))}
                         </div>
                         <div className={styles.summaryTotal}>
                             <span>Total</span>
-                            <span>${subtotal.toFixed(2)}</span>
+                            <span>${formatPrice(subtotal)}</span>
                         </div>
                     </div>
                 </div>

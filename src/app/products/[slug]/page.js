@@ -23,6 +23,9 @@ async function getSanityProduct(slug) {
       usage,
       fullPrice,
       refillPrice,
+      priceOneTime,
+      price30Day,
+      price90Day,
       "imageSrc": image.asset->url
     }`;
         const data = await client.fetch(query);
@@ -110,7 +113,7 @@ export default async function ProductPage({ params }) {
     }));
 
     return (
-        <main className={`${styles.main} env-white`}>
+        <main className={styles.main}>
             <JsonLd data={productSchema} />
             {/* Breadcrumbs */}
             <div className={styles.breadcrumbs}>
@@ -159,6 +162,9 @@ export default async function ProductPage({ params }) {
                         fullPrice={product.fullPrice}
                         refillPrice={product.refillPrice}
                         subscriptionPrice={product.subscriptionPrice}
+                        priceOneTime={product.priceOneTime}
+                        price30Day={product.price30Day}
+                        price90Day={product.price90Day}
                     />
 
                     {/* Social Share */}
@@ -212,12 +218,19 @@ export default async function ProductPage({ params }) {
                             </Accordion>
                         )}
 
-                        <Accordion title="Sensory Profile">
-                            {product.texture}
-                        </Accordion>
-
-                        <Accordion title="How to Use">
-                            {product.usage}
+                        <Accordion title="Sensory Ritual Guide">
+                            <div style={{ marginBottom: '1rem' }}>
+                                <strong style={{ color: 'var(--color-accent)' }}>The Olfactory Profile</strong>
+                                <p style={{ marginTop: '0.5rem', fontStyle: 'italic', opacity: 0.9 }}>
+                                    {product.texture || 'Top notes of calming Blue Tansy and grounding Sandalwood to lower cortisol during your nightly application.'}
+                                </p>
+                            </div>
+                            <div>
+                                <strong style={{ color: 'var(--color-accent)' }}>The Application</strong>
+                                <p style={{ marginTop: '0.5rem' }}>
+                                    {product.usage}
+                                </p>
+                            </div>
                         </Accordion>
 
                         {product.whoItsFor && (

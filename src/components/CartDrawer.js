@@ -5,15 +5,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { PRODUCTS } from '@/data/items';
+import { formatPrice } from '@/lib/formatPrice';
 
 export default function CartDrawer() {
     const { cart, isDrawerOpen, toggleDrawer, updateQuantity, removeFromCart, subtotal, addToCart } = useCart();
     const drawerRef = useRef(null);
 
-    // Free Shipping Logic
-    const FREE_SHIPPING_THRESHOLD = 150;
-    const progress = Math.min((subtotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
-    const remaining = FREE_SHIPPING_THRESHOLD - subtotal;
+    // Gift Progress Logic
+    const has90Day = cart.some(item => item.purchaseType === '90-day');
+    const progress = has90Day ? 100 : 50;
 
     useEffect(() => {
         if (isDrawerOpen) {
@@ -64,15 +64,15 @@ export default function CartDrawer() {
                     <button onClick={toggleDrawer} className={styles.close}>&times;</button>
                 </div>
 
-                {/* Free Shipping Bar */}
+                {/* Gift Progress Bar */}
                 <div className={styles.shippingBar}>
-                    {remaining > 0 ? (
-                        <p className={styles.shippingText}>You are <span>${remaining.toFixed(2)}</span> away from complimentary shipping.</p>
+                    {!has90Day ? (
+                        <p className={styles.shippingText}>Add the <span>90-Day Protocol</span> to unlock the Luxury Silk-Screened Applicator.</p>
                     ) : (
-                        <p className={styles.shippingText}>Complimentary shipping unlocked.</p>
+                        <p className={styles.shippingText}>✨ <span>Luxury Silk-Screened Applicator</span> unlocked.</p>
                     )}
                     <div className={styles.progressBar}>
-                        <div className={styles.progressFill} style={{ width: `${progress}%` }} />
+                        <div className={`${styles.progressFill} ${has90Day ? styles.progressComplete : ''}`} style={{ width: `${progress}%` }} />
                     </div>
                 </div>
 
@@ -88,16 +88,16 @@ export default function CartDrawer() {
                                 <div className={styles.details}>
                                     <div className={styles.row}>
                                         <h3 className={styles.itemName}>{item.name}</h3>
-                                        <span className={styles.itemPrice}>${item.price}</span>
+                                        <span className={styles.itemPrice}>${formatPrice(item.price)}</span>
                                     </div>
                                     <p className={styles.variant}>{item.variant}</p>
                                     <div className={styles.actions}>
                                         <div className={styles.quantity}>
-                                            <button onClick={() => updateQuantity(item.cartId, item.quantity - 1)}>-</button>
+                                            {!item.isAutoGift && <button onClick={() => updateQuantity(item.cartId, item.quantity - 1)}>-</button>}
                                             <span>{item.quantity}</span>
-                                            <button onClick={() => updateQuantity(item.cartId, item.quantity + 1)}>+</button>
+                                            {!item.isAutoGift && <button onClick={() => updateQuantity(item.cartId, item.quantity + 1)}>+</button>}
                                         </div>
-                                        <button onClick={() => removeFromCart(item.cartId)} className={styles.remove}>Remove</button>
+                                        {!item.isAutoGift && <button onClick={() => removeFromCart(item.cartId)} className={styles.remove}>Remove</button>}
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@ export default function CartDrawer() {
                                 </div>
                                 <div className={styles.upsellInfo}>
                                     <p className={styles.upsellName}>{upsell.name}</p>
-                                    <p className={styles.upsellPrice}>${upsell.price}</p>
+                                    <p className={styles.upsellPrice}>${formatPrice(upsell.price)}</p>
                                     <button
                                         className={styles.upsellAdd}
                                         onClick={() => addToCart({ ...upsell, cartId: Date.now() + Math.random(), variant: upsell.variant })}
@@ -132,12 +132,24 @@ export default function CartDrawer() {
                 <div className={styles.footer}>
                     <div className={styles.subtotal}>
                         <span>Subtotal</span>
-                        <span>${subtotal.toFixed(2)}</span>
+                        <span>${formatPrice(subtotal)}</span>
                     </div>
+                    
+                    {/* Ambassador Trust Bar */}
+                    <div className={styles.trustBar}>
+                        <p className={styles.quote}>"As a specialist in cellular longevity, I trust Isola Vitale because the third-party testing ensures clinical-grade purity in every jar."</p>
+                        <p className={styles.author}>— Dr. E. Rossi, Longevity Specialist</p>
+                    </div>
+
                     <Link href="/checkout" onClick={toggleDrawer} className={styles.checkoutBtn}>
-                        Proceed to Checkout
+                        Proceed to Secure Checkout
                     </Link>
-                    <p className={styles.disclaimer}>Shipping & taxes calculated at checkout.</p>
+
+                    {/* Third-Party Testing Transparency */}
+                    <div className={styles.guaranteeLinks}>
+                        <Link href="/purity" className={styles.purityLink}>View Batch Results (Third-Party Tested)</Link>
+                        <p className={styles.disclaimer}>Shipping & taxes calculated at checkout.</p>
+                    </div>
                 </div>
             </div >
         </>

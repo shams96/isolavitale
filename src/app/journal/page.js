@@ -31,23 +31,23 @@ const articles = [
 
 export default function JournalPage() {
     return (
-        <main className={styles.main}>
+        <main className="u-page-container">
             <header className={styles.header}>
-                <span className={styles.label}>Thought Leadership</span>
-                <h1 className={styles.title}>The Journal</h1>
+                <span className="u-overline">Thought Leadership</span>
+                <h1 className="u-hero-title">The Journal</h1>
             </header>
 
             <div className={styles.grid}>
                 {articles.map(article => (
                     <article key={article.id} className={styles.article}>
-                        <div className={styles.imageContainer}>
-                            <Image src={article.imageSrc} alt={article.title} fill className={styles.image} />
+                        <div className="u-aspect-ratio-plinth" style={{ marginBottom: '1.5rem', aspectRatio: '16/9' }}>
+                            <Image src={article.imageSrc} alt={article.title} fill className="u-image-fit" />
                         </div>
                         <div className={styles.meta}>
                             {article.category} — {article.date}
                         </div>
                         <h2 className={styles.articleTitle}>{article.title}</h2>
-                        <p className={styles.excerpt}>{article.excerpt}</p>
+                        <p className="u-body-text" style={{ fontSize: '0.9rem' }}>{article.excerpt}</p>
                     </article>
                 ))}
             </div>

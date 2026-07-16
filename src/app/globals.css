@@ -80,8 +80,8 @@ body {
 }
 
 body {
-  color: var(--color-midnight);
-  background: var(--color-white);
+  color: var(--color-white);
+  background: var(--color-emerald);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -161,4 +161,93 @@ a {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* =========================================
+   UNIVERSAL LUXURY UTILITIES 
+   ========================================= */
+
+/* Typography Utilities */
+.u-overline {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-label);
+  display: block;
+  margin-bottom: 1rem;
+}
+.env-emerald .u-overline, .env-black .u-overline { color: var(--color-gold); }
+.env-white .u-overline { color: var(--color-emerald-light); opacity: 0.7; }
+
+.u-hero-title {
+  font-family: var(--font-serif);
+  font-size: var(--heading-size-display);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+@media (max-width: 768px) {
+  .u-hero-title { font-size: 3.5rem; }
+}
+
+.u-body-text {
+  font-family: var(--font-sans);
+  font-size: var(--text-size-body);
+  line-height: var(--line-height-body);
+  opacity: 0.85;
+}
+
+/* Layout Utilities */
+.u-page-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--page-padding-top) 4rem 8rem;
+}
+@media (max-width: 768px) {
+  .u-page-container { padding: var(--page-padding-top-mobile) 2rem 6rem; }
+}
+
+.u-narrow-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Button System */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--color-emerald);
+  color: var(--color-white);
+  padding: 1.25rem 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: center;
+  text-decoration: none;
+}
+.btn-primary:hover { opacity: 0.9; }
+
+.btn-secondary {
+  display: inline-block;
+  background-color: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  padding: 1.25rem 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: center;
+  text-decoration: none;
+}
+.btn-secondary:hover { opacity: 0.7; }
+
+.env-black .btn-primary, .env-emerald .btn-primary {
+  background-color: var(--color-ivory);
+  color: var(--color-midnight);
 }

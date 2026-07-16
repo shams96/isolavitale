@@ -1,9 +1,7 @@
 .container {
     min-height: 100vh;
-    padding-top: 180px;
+    padding-top: var(--page-padding-top);
     padding-bottom: 15rem;
-    background-color: var(--color-emerald);
-    color: var(--color-white);
     display: flex;
     justify-content: center;
     position: relative;
@@ -40,27 +38,6 @@
 
 .authHeader {
     margin-bottom: 5rem;
-}
-
-.uLabel {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: 0.85rem;
-    /* Increased from 0.7rem */
-    letter-spacing: var(--letter-spacing-label);
-    text-transform: uppercase;
-    color: var(--color-gold);
-    margin-bottom: 2.5rem;
-    opacity: 1;
-    /* Full visibility */
-}
-
-.title {
-    font-family: var(--font-serif);
-    font-size: 3rem;
-    font-weight: 300;
-    margin-bottom: 1rem;
-    letter-spacing: -0.01em;
 }
 
 .subtitle {
@@ -181,14 +158,6 @@
 .dashboardHeader {
     margin-bottom: 10rem;
     text-align: left;
-}
-
-.displayTitle {
-    font-family: var(--font-serif);
-    font-size: 5rem;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    margin: 1.5rem 0;
 }
 
 .vitals {
@@ -363,42 +332,6 @@
 }
 
 /* Buttons */
-.primaryBtn {
-    padding: 1.2rem;
-    background: var(--color-gold);
-    color: var(--color-emerald);
-    border: none;
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition-fast);
-}
-
-.primaryBtn:hover {
-    background: #D4B982;
-    transform: translateY(-2px);
-}
-
-.ghostBtn {
-    padding: 1.2rem;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--color-white);
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    cursor: pointer;
-    transition: var(--transition-fast);
-}
-
-.ghostBtn:hover {
-    border-color: var(--color-gold);
-    color: var(--color-gold);
-}
 
 .ghostBtnSmall {
     padding: 1rem;
@@ -505,9 +438,5 @@
 
     .grid {
         grid-template-columns: 1fr;
-    }
-
-    .displayTitle {
-        font-size: 3.5rem;
     }
 }

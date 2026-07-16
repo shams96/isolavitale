@@ -139,10 +139,23 @@ export default {
                         }
                     },
                     {
-                        name: 'price',
-                        title: 'Price',
+                        name: 'priceOneTime',
+                        title: 'One-Time Purchase Price',
                         type: 'number',
+                        description: 'Premium price for one-time purchases (Tier 3)',
                         validation: Rule => Rule.required().positive()
+                    },
+                    {
+                        name: 'price30Day',
+                        title: '30-Day Subscription Price',
+                        type: 'number',
+                        description: 'Monthly maintenance price (Tier 2)'
+                    },
+                    {
+                        name: 'price90Day',
+                        title: '90-Day Subscription Price (Billed Quarterly)',
+                        type: 'number',
+                        description: 'Total price billed every 90 days (Tier 1). Will be divided by 3 for monthly display.'
                     },
                     {
                         name: 'compareAtPrice',
@@ -184,13 +197,13 @@ export default {
                 preview: {
                     select: {
                         title: 'variantType',
-                        price: 'price',
+                        price: 'priceOneTime',
                         quantity: 'inventory.quantity'
                     },
                     prepare({ title, price, quantity }) {
                         return {
                             title: title === 'full' ? 'Full Vessel' : 'Refill Cartridge',
-                            subtitle: `$${price} • ${quantity} in stock`
+                            subtitle: `One-Time: $${price} • ${quantity} in stock`
                         }
                     }
                 }
@@ -230,6 +243,13 @@ export default {
                     validation: Rule => Rule.required()
                 }
             ],
+            group: 'media'
+        },
+        {
+            name: 'imageSrcFallback',
+            title: 'Fallback Image Path (Local)',
+            type: 'string',
+            description: 'Temporary local path until image is uploaded to Sanity',
             group: 'media'
         },
         {

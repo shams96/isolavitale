@@ -9,8 +9,8 @@ const DashboardView = ({ user, logout }) => {
         <div className={styles.dashboard}>
             <FadeIn>
                 <div className={styles.dashboardHeader}>
-                    <span className={styles.uLabel}>Private Client Lounge</span>
-                    <h1 className={styles.displayTitle}>Welcome, {user.name}</h1>
+                    <span className="u-overline">Private Client Lounge</span>
+                    <h1 className="u-hero-title">Welcome, {user.name}</h1>
                     <div className={styles.vitals}>
                         <span className={styles.vitalItem}>ID: {user.id}</span>
                         <span className={styles.vitalItem}>Security: Post-Quantum</span>
@@ -29,7 +29,7 @@ const DashboardView = ({ user, logout }) => {
                             <div className={styles.item}>The Biosphere System / Phase I</div>
                             <div className={styles.item}>Nocturn Cream / Dermal Restoration</div>
                         </div>
-                        <button className={styles.ghostBtn}>Adjust Frequency</button>
+                        <button className="btn-secondary" style={{ width: '100%', marginTop: '1rem' }}>Adjust Frequency</button>
                     </div>
 
                     {/* Digital Skin Concierge */}
@@ -48,7 +48,7 @@ const DashboardView = ({ user, logout }) => {
                             </div>
                         </div>
                         <p className={styles.miniNote}>Last analysis: March 01, 2026</p>
-                        <button className={styles.primaryBtn}>Initiate Consultation</button>
+                        <button className="btn-primary" style={{ width: '100%', marginTop: '1rem' }}>Initiate Consultation</button>
                     </div>
 
                     {/* Lab Appointments */}
@@ -61,7 +61,7 @@ const DashboardView = ({ user, logout }) => {
                             <span className={styles.aptTime}>10:00 AM (Central European Time)</span>
                             <span className={styles.aptType}>Virtual Laboratory Lounge</span>
                         </div>
-                        <button className={styles.ghostBtn}>Reschedule</button>
+                        <button className="btn-secondary" style={{ width: '100%', marginTop: '1rem' }}>Reschedule</button>
                     </div>
 
                     {/* Ritual History */}
@@ -79,7 +79,7 @@ const DashboardView = ({ user, logout }) => {
                                 <span className={styles.accent}>$240</span>
                             </div>
                         </div>
-                        <button className={styles.ghostBtn}>View All Archives</button>
+                        <button className="btn-secondary" style={{ width: '100%', marginTop: '1rem' }}>View All Archives</button>
                     </div>
                 </div>
 
@@ -111,8 +111,8 @@ const LoginView = ({ authenticate }) => {
         <div className={styles.authWrapper}>
             <FadeIn>
                 <div className={styles.authHeader}>
-                    <span className={styles.uLabel}>Identity Protocol</span>
-                    <h1 className={styles.title}>Private Client</h1>
+                    <span className="u-overline">Identity Protocol</span>
+                    <h1 className="u-hero-title">Private Client</h1>
                     <p className={styles.subtitle}>Bio-Secure Entry Only.</p>
                 </div>
 

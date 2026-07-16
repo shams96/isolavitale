@@ -45,7 +45,6 @@
     font-size: var(--heading-size-section);
     line-height: 1;
     font-weight: 300;
-    color: var(--color-midnight);
 }
 
 .text {
@@ -59,7 +58,7 @@
 .imageContainer {
     position: relative;
     aspect-ratio: 4/5;
-    background: var(--color-ivory);
+    background: var(--color-emerald-light);
     overflow: hidden;
     border: var(--border-ultra);
 }

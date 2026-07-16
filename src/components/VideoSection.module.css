@@ -1,7 +1,6 @@
 .container {
     padding: var(--section-padding);
     border-top: var(--border-standard);
-    background-color: var(--color-white);
 }
 
 .title {
@@ -112,7 +111,7 @@
 }
 
 .step {
-    border-top: 1px solid #ddd;
+    border-top: var(--border-standard);
     padding-top: 1rem;
 }
 
@@ -120,7 +119,7 @@
     display: block;
     font-family: var(--font-sans);
     font-size: 0.8rem;
-    color: #888;
+    color: var(--color-gold);
     margin-bottom: 0.5rem;
 }
 

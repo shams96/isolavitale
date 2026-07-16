@@ -3,7 +3,7 @@ import styles from './EditorialSection.module.css';
 
 export default function EditorialSection({ marbleImageSrc }) {
     return (
-        <section className={`${styles.section} env-white`}>
+        <section className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.block}>
                     <div className={styles.content}>

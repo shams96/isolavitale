@@ -18,34 +18,6 @@
     justify-content: center;
 }
 
-.label {
-    display: block;
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    letter-spacing: var(--letter-spacing-label);
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: 2rem;
-    color: var(--color-gold);
-}
-
-.sectionTitle {
-    font-family: var(--font-serif);
-    font-size: var(--heading-size-section);
-    line-height: 1;
-    font-weight: 300;
-    margin-bottom: 3rem;
-}
-
-.text {
-    font-family: var(--font-sans);
-    font-size: var(--text-size-body);
-    line-height: var(--line-height-body);
-    opacity: 0.8;
-    margin-bottom: 2rem;
-    max-width: 500px;
-}
-
 .stat {
     display: block;
     font-family: var(--font-sans);

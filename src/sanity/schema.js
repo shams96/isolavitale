@@ -6,6 +6,8 @@ import settings from './schemas/settings'
 import order from './schemas/order'
 import legal from './schemas/legal'
 
+import checkoutSettings from './schemas/checkoutSettings'
+
 export const schema = {
-    types: [product, collection, homepage, journal, settings, order, legal],
+    types: [product, collection, homepage, journal, settings, order, legal, checkoutSettings],
 }

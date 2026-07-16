@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function ProductsPage() {
     return (
-        <main className={`${styles.main} env-white`}>
+        <main className={styles.main}>
             <div className={styles.container}>
 
                 <header className={styles.header}>

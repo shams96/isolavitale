@@ -1,6 +1,5 @@
 .main {
     padding-top: 8rem;
-    background-color: var(--color-ivory);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -43,8 +42,9 @@
     font-family: var(--font-sans);
     font-size: 0.8rem;
     text-transform: uppercase;
-    color: #888;
+    color: var(--color-gold);
     margin-bottom: 1rem;
+    opacity: 0.8;
 }
 
 .buttons {
@@ -58,8 +58,9 @@
     flex: 1;
     padding: 0.8rem;
     border-radius: 4px;
-    border: 1px solid #ddd;
-    background: #fff;
+    border: var(--border-standard);
+    background: var(--color-emerald-light);
+    color: var(--color-white);
     cursor: pointer;
     font-weight: 600;
 }
@@ -73,7 +74,8 @@
 .divider {
     font-family: var(--font-sans);
     font-size: 0.8rem;
-    color: #888;
+    color: var(--color-white);
+    opacity: 0.5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,7 +86,7 @@
 .divider::after {
     content: '';
     height: 1px;
-    background-color: #ddd;
+    background-color: var(--border-standard);
     flex: 1;
 }
 
@@ -105,8 +107,9 @@
 .input {
     width: 100%;
     padding: 1.2rem;
-    background: var(--color-ivory);
+    background: var(--color-emerald-light);
     border: var(--border-ultra);
+    color: var(--color-white);
     font-family: var(--font-sans);
     font-size: 1rem;
     margin-bottom: 1.5rem;
@@ -116,7 +119,7 @@
 .input:focus {
     outline: none;
     border-color: var(--color-gold);
-    background: var(--color-white);
+    background: var(--color-emerald);
 }
 
 .row {
@@ -131,13 +134,14 @@
 .submit {
     width: 100%;
     padding: 1.5rem;
-    background: var(--color-emerald);
-    color: var(--color-white);
+    background: var(--color-gold);
+    color: var(--color-emerald);
     border: none;
     font-family: var(--font-sans);
     text-transform: uppercase;
     letter-spacing: 0.2em;
     font-size: 0.85rem;
+    font-weight: 600;
     cursor: pointer;
     transition: var(--transition-luxury);
 }
@@ -161,14 +165,14 @@
 .link {
     font-family: var(--font-sans);
     font-size: 0.8rem;
-    color: var(--color-obsidian);
+    color: var(--color-gold);
     text-decoration: underline;
 }
 
 /* Summary Column */
 .summaryColumn {
     padding: 4rem;
-    background: var(--color-ivory);
+    background: var(--color-emerald-light);
     border: var(--border-ultra);
     height: fit-content;
     position: sticky;
@@ -177,7 +181,7 @@
 
 .itemsList {
     margin-bottom: 2rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: var(--border-standard);
     padding-bottom: 1rem;
 }
 
@@ -202,12 +206,14 @@
 
 .itemVariant {
     font-size: 0.8rem;
-    color: #666;
+    color: var(--color-gold);
+    opacity: 0.8;
 }
 
 .itemQty {
     font-size: 0.8rem;
-    color: #999;
+    color: var(--color-white);
+    opacity: 0.5;
 }
 
 .itemPrice {

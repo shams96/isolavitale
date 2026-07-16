@@ -18,6 +18,39 @@ export function CartProvider({ children }) {
         localStorage.setItem('biosphere_cart', JSON.stringify(cart));
     }, [cart]);
 
+    // Auto-manage Ritual Gifts
+    useEffect(() => {
+        const has90Day = cart.some(item => item.purchaseType === '90-day' && !item.isAutoGift);
+        const hasMasterclass = cart.some(item => item.id === 'masterclass-gift');
+
+        if (has90Day && !hasMasterclass) {
+            setCart(prev => [...prev, 
+                {
+                    id: 'masterclass-gift',
+                    cartId: 'masterclass-gift',
+                    name: '90-Day Skin Longevity Masterclass',
+                    price: 0,
+                    variant: 'Digital Access ($99 Value) - Unlocked 🔓',
+                    imageSrc: '/serum-uniform.png', // Placeholder
+                    quantity: 1,
+                    isAutoGift: true
+                },
+                {
+                    id: 'ritual-card-gift',
+                    cartId: 'ritual-card-gift',
+                    name: 'Sensory Ritual Card',
+                    price: 0,
+                    variant: 'Physical Inclusion - Unlocked 🔓',
+                    imageSrc: '/marble.png', // Placeholder
+                    quantity: 1,
+                    isAutoGift: true
+                }
+            ]);
+        } else if (!has90Day && hasMasterclass) {
+            setCart(prev => prev.filter(item => !item.isAutoGift));
+        }
+    }, [cart]);
+
     const addToCart = (product) => {
         setCart(prev => {
             const existing = prev.find(item => item.id === product.id && item.variant === product.variant);
@@ -34,12 +67,15 @@ export function CartProvider({ children }) {
     };
 
     const removeFromCart = (itemId) => {
-        setCart(prev => prev.filter(item => item.cartId !== itemId));
+        setCart(prev => prev.filter(item => item.cartId !== itemId && item.id !== itemId));
     };
 
     const updateQuantity = (itemId, newQuantity) => {
         if (newQuantity < 1) return;
-        setCart(prev => prev.map(item => item.cartId === itemId ? { ...item, quantity: newQuantity } : item));
+        setCart(prev => prev.map(item => {
+            if (item.isAutoGift) return item; // Cannot update quantity of auto-gifts
+            return item.cartId === itemId || item.id === itemId ? { ...item, quantity: newQuantity } : item;
+        }));
     };
 
     const toggleDrawer = () => setIsDrawerOpen(prev => !prev);

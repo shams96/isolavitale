@@ -1,6 +1,4 @@
 .page {
-  background-color: var(--color-white);
-  color: var(--color-midnight);
   min-height: 100vh;
 }
 

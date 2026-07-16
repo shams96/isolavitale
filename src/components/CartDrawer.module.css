@@ -93,9 +93,12 @@
 
 .progressFill {
     height: 100%;
-    background-color: var(--color-ivory);
-    box-shadow: 0 0 10px rgba(244, 243, 239, 0.5);
-    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    background-color: var(--color-obsidian);
+    transition: width 0.3s ease;
+}
+
+.progressComplete {
+    background-color: var(--color-accent);
 }
 
 .items {
@@ -167,7 +170,7 @@
 
 .itemName {
     font-family: var(--font-serif);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 400;
     max-width: 180px;
     line-height: 1.3;
@@ -343,22 +346,68 @@
 .checkoutBtn {
     display: block;
     width: 100%;
-    padding: 1.5rem;
-    background-color: var(--color-ivory);
-    color: var(--color-obsidian);
+    padding: 1.25rem;
+    background-color: var(--color-emerald);
+    color: white;
     text-align: center;
-    font-family: var(--font-sans);
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.9rem;
     text-decoration: none;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: none;
+    text-transform: uppercase;
+    font-family: var(--font-sans);
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    transition: opacity 0.2s;
 }
 
 .checkoutBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
+}
+
+.trustBar {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(197, 160, 89, 0.15);
+    padding: 1.25rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.quote {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    color: var(--color-ivory);
+    opacity: 0.85;
+}
+
+.author {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+}
+
+.guaranteeLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.purityLink {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--color-ivory);
+    text-decoration: underline;
+    opacity: 0.6;
+    text-underline-offset: 3px;
+}
+
+.purityLink:hover {
+    opacity: 1;
 }
 
 .disclaimer {
